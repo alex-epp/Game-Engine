@@ -26,10 +26,10 @@ namespace core
 		};
 
 		MsgType type;
-
+		virtual ~Message();
 	protected:
 		Message(MsgType);
-		virtual ~Message();
+		
 	};
 
 	class UpdateRenderableMessage : public Message
@@ -61,12 +61,20 @@ namespace core
 		}
 
 		void add(Listener*, list<Message::MsgType>);
-		void sendMsg(Message*);
+		template <class Type, class... Args>
+		void recieveMsg(Args&&... args);
+		void distrubuteMsgs();
 
 	private:
 		map<Message::MsgType, std::vector<Listener*>> listeners;
+		queue<Message*> messageQueue;
 	};
 
+	template <class Type, class... Args>
+	void ChangeManager::recieveMsg(Args&&... args)
+	{
+		messageQueue.push(new Type(std::forward<Args>(args)...));
+	}
 
 	// *****************************************************************************************************************
 	// System

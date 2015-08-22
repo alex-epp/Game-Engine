@@ -26,9 +26,10 @@ int main()
 	rs.addComponent(e2, &c2);
 
 	// Send a message
-	UpdateRenderableMessage m("Hello", "World", 0);
-	ChangeManager::get().sendMsg(&m);
-	 
+	ChangeManager::get().recieveMsg<UpdateRenderableMessage>("Hello", "World", 0);
+
+	ChangeManager::get().distrubuteMsgs();
+
 	rs.act();
 
 	cin.get();

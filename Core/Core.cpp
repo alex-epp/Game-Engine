@@ -13,11 +13,18 @@ namespace core
 			listeners[*it].push_back(o);
 	}
 
-	void ChangeManager::sendMsg(Message *message)
+	void ChangeManager::distrubuteMsgs()
 	{
-		for (Listener *listener : listeners[message->type])
-			listener->recieveMsg(message);
+		while (!messageQueue.empty())
+		{
+			for (Listener *listener : listeners[messageQueue.back()->type])
+				listener->recieveMsg(messageQueue.back());
+			delete messageQueue.back();
+			messageQueue.pop();
+		}
 	}
+
+	
 
 	Message::Message(MsgType t) : type(t)
 	{
