@@ -1,0 +1,13 @@
+﻿Build started 2015-08-22 1:49:43 PM.
+     1>Project "C:\Users\aepp8_000\Documents\Visual Studio 2015\Projects\Components\Core\Core.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\Core.pdb" /Gd /TP /analyze- /errorReport:prompt Core.cpp
+         Core.cpp
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\Lib.exe /OUT:"C:\Users\aepp8_000\Documents\Visual Studio 2015\Projects\Components\Debug\Core.lib" /NOLOGO Debug\Core.obj
+         Core.vcxproj -> C:\Users\aepp8_000\Documents\Visual Studio 2015\Projects\Components\Debug\Core.lib
+     1>Done Building Project "C:\Users\aepp8_000\Documents\Visual Studio 2015\Projects\Components\Core\Core.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.79
