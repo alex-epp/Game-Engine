@@ -21,7 +21,7 @@ int main()
 	// Create another entity
 	RenderableComponent c2;
 	c2.header = "Another Header";
-	c2.text = "Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah";
+	c2.text = "Blah blah blah blah blah blah blah blah blah blah";
 	EntityType e2 = 1;
 	rs.addComponent(e2, &c2);
 
