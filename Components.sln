@@ -15,7 +15,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RenderSystem", "RenderSyste
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Core", "Core\Core.vcxproj", "{A1F24532-3E64-4F34-A3CC-D3FA2A45F208}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGL Engine", "..\..\..\Documents\Visual Studio 2015\Projects\OpenGL Engine\OpenGL Engine\OpenGL Engine.vcxproj", "{B9F26D51-9AFF-4485-90F9-94762783B164}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGL Engine", "OpenGL Engine\OpenGL Engine.vcxproj", "{B9F26D51-9AFF-4485-90F9-94762783B164}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
