@@ -5,6 +5,9 @@
 #include <list>
 #include <vector>
 #include <string>
+#include <tuple>
+#include <algorithm>
+#include "utility.h"
 
 using namespace std;
 
@@ -29,7 +32,7 @@ namespace core
 		virtual ~Message();
 	protected:
 		Message(MsgType);
-		
+
 	};
 
 	class UpdateRenderableMessage : public Message
@@ -80,17 +83,70 @@ namespace core
 	// System
 	// *****************************************************************************************************************
 
-	template <typename ComponentType>
 	class System : public Listener
 	{
 	protected:
-		map<EntityType, ComponentType*> components;
 		time_t nextAct;
 
 	public:
-		virtual void addComponent(EntityType, ComponentType*) = 0;
 		virtual void act() = 0;
 	};
 
+	class RenderableComponent
+	{
+	public:
+		RenderableComponent(string h, string t) : header(h), text(t) {}
 
+		string header;
+		string text;
+	};
+	
+	class ComponentManager
+	{
+	private:
+
+		// This tuple must contain all the possible component types
+		tuple<map<EntityType, RenderableComponent*>> componentLists;
+		ComponentManager() = default;
+
+	public:
+
+		static ComponentManager &get()
+		{
+			static ComponentManager instance;
+
+			return instance;
+		}
+
+
+		template<class ComponentType, class... Args>
+		void addComponent(EntityType objectID, Args&&... args)
+		{
+			auto &theMap = std::get<map<EntityType, ComponentType*>>(componentLists);
+			theMap[objectID] = new ComponentType(std::forward<Args>(args)...);
+
+		}
+		
+		template <class ComponentType>
+		auto &getComponent(EntityType entity)
+		{
+			return std::get<map<EntityType, ComponentType*>>(componentLists)[entity];
+		}
+
+		template <class ComponentType>
+		auto &getComponentsByType()
+		{
+			return std::get<map<EntityType, ComponentType*>>(componentLists);
+		}
+
+		void cleanup()
+		{
+			for_each(componentLists, [](auto &m)
+			{
+				for (auto it = m.begin(); it != m.end(); ++it)
+					delete it->second;
+			});
+		}
+	};
+	
 }

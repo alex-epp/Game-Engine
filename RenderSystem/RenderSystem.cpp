@@ -16,13 +16,9 @@ namespace renderSystem
 		//ChangeManager::get();
 	}
 
-	void RenderSystem::addComponent(EntityType e, RenderableComponent* rc)
-	{
-		components[e] = rc;
-	}
-
 	void RenderSystem::act()
 	{
+		auto &components = ComponentManager::get().getComponentsByType<RenderableComponent>();
 		for (auto it = components.begin(); it != components.end(); ++it)
 			cout << it->second->header << endl << it->second->text << endl << endl;
 	}
@@ -35,8 +31,9 @@ namespace renderSystem
 			{
 				auto m = dynamic_cast<UpdateRenderableMessage*>(msg);
 				cout << "Updating... header=" << m->header << " text=" << m->text << endl;
-				components[m->entityID]->header = m->header;
-				components[m->entityID]->text = m->text;
+				auto comp = ComponentManager::get().getComponent<RenderableComponent>(m->entityID);
+				comp->header = m->header;
+				comp->text = m->text;
 			}
 		}
 	}

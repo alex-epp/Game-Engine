@@ -8,19 +8,11 @@ using namespace core;
 
 namespace renderSystem
 {
-	class RenderableComponent
-	{
-	public:
-		string header;
-		string text;
-	};
-
-	class RenderSystem : System<RenderableComponent>
+	class RenderSystem : System
 	{
 	public:
 		RenderSystem();
 
-		virtual void addComponent(EntityType, RenderableComponent*);
 		virtual void act();
 		virtual void recieveMsg(Message*);
 	};

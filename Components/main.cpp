@@ -1,36 +1,37 @@
 #include "../RenderSystem/RenderSystem.h"
 #include <iostream>
 
+#ifdef _DEBUG
 #pragma comment (lib, "../Debug/RenderSystem.lib")
 #pragma comment (lib, "../Debug/Core.lib")
+#else
+#pragma comment (lib, "../Release/RenderSystem.lib")
+#pragma comment (lib, "../Release/Core.lib")
+#endif
 
 using namespace std;
 using namespace renderSystem;
 
 int main()
 {
-	RenderSystem rs;
-
 	// Create a new entity
-	RenderableComponent c;
-	c.header = "Hello World";
-	c.text = "This is a component";
-	EntityType e = 0;
-	rs.addComponent(e, &c);
-	
-	// Create another entity
-	RenderableComponent c2;
-	c2.header = "Another Header";
-	c2.text = "Blah blah blah blah blah blah blah blah blah blah";
-	EntityType e2 = 1;
-	rs.addComponent(e2, &c2);
+	ComponentManager::get().addComponent<RenderableComponent>(0, "Hello World", "This is a component");
 
+	// Create another entity
+	ComponentManager::get().addComponent<RenderableComponent>(1, "Another Header", "Blah blah blah blah blah blah blah blah");
+
+	// Create a render system
+	RenderSystem rs;
+	
 	// Send a message
 	ChangeManager::get().recieveMsg<UpdateRenderableMessage>("Hello", "World", 0);
-
 	ChangeManager::get().distrubuteMsgs();
 
+	// Execute the render logic
 	rs.act();
+
+	// Cleanup the objects in memory
+	ComponentManager::get().cleanup();
 
 	cin.get();
 }
