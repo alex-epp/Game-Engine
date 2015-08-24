@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glm-master\CMakeFiles\a7e64754ece553c72a1a81791cefc06e\RUN_TESTS_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{5884F740-F333-4B36-B2E9-AF2C2241770D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

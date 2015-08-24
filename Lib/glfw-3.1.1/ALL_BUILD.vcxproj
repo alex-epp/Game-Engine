@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{CB2E6CDF-D922-4D8D-9A39-CCCE374379B9}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1 -BC:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1 --check-stamp-file C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/CMakeLists.txt;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeLists.txt;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\3.3.1\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\3.3.1\CMakeCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\Windows-MSVC.cmake;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\3.3.1\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindOpenGL.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindThreads.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckIncludeFiles.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckLibraryExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindDoxygen.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\WriteBasicConfigVersionFile.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\src\glfw3Config.cmake.in;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\docs\Doxyfile.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\src\glfw_config.h.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\src\glfw3.pc.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\cmake_uninstall.cmake.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1 -BC:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1 --check-stamp-file C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/CMakeLists.txt;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeLists.txt;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\3.3.1\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\3.3.1\CMakeCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\Windows-MSVC.cmake;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\3.3.1\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindOpenGL.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindThreads.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckIncludeFiles.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckLibraryExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindDoxygen.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\WriteBasicConfigVersionFile.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\src\glfw3Config.cmake.in;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\docs\Doxyfile.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\src\glfw_config.h.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\src\glfw3.pc.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\cmake_uninstall.cmake.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1 -BC:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1 --check-stamp-file C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/CMakeLists.txt;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeLists.txt;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\3.3.1\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\3.3.1\CMakeCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\Windows-MSVC.cmake;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\3.3.1\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindOpenGL.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindThreads.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckIncludeFiles.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckLibraryExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindDoxygen.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\WriteBasicConfigVersionFile.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\src\glfw3Config.cmake.in;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\docs\Doxyfile.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\src\glfw_config.h.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\src\glfw3.pc.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\cmake_uninstall.cmake.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1 -BC:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1 --check-stamp-file C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/CMakeLists.txt;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeLists.txt;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\3.3.1\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\3.3.1\CMakeCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\Platform\Windows-MSVC.cmake;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\3.3.1\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindOpenGL.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindThreads.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckIncludeFiles.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckLibraryExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CheckSymbolExists.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindDoxygen.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\FindPackageMessage.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\WriteBasicConfigVersionFile.cmake;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\CMakeParseArguments.cmake;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\src\glfw3Config.cmake.in;C:\Program Files (x86)\CMake\share\cmake-3.3\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\docs\Doxyfile.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\src\glfw_config.h.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\src\glfw3.pc.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\cmake_uninstall.cmake.in;C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/ZERO_CHECK.vcxproj">
+      <Project>5F808FD4-23E7-4158-9773-DE3C4201CEAA</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/accuracy.vcxproj">
+      <Project>A617C265-E1E9-42C9-BC69-5F41A9105BE2</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/examples/boing.vcxproj">
+      <Project>2FFCAABB-E8BA-4ADF-8DE7-FA4336979C33</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/clipboard.vcxproj">
+      <Project>5BD3E4FE-6B42-4AA8-A2BF-FF93C61F42B2</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/cursor.vcxproj">
+      <Project>38B5D1BD-FD50-4F3C-947E-044297FDB005</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/cursoranim.vcxproj">
+      <Project>91D5D35D-ABEF-42F9-AA74-204976569BC7</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/defaults.vcxproj">
+      <Project>884D3780-E13B-4945-AEAC-611C7306B9EC</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/empty.vcxproj">
+      <Project>B509BE57-E80A-430B-8EDD-1EAC80BBEC22</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/events.vcxproj">
+      <Project>26D6B4B6-2319-41D5-AF08-C1708D1EAFC4</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/fsaa.vcxproj">
+      <Project>A889B043-9DD8-4C5A-840C-61E1450EBAE8</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/gamma.vcxproj">
+      <Project>6CF5A305-6A00-40BE-9352-DE12F8729C0F</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/examples/gears.vcxproj">
+      <Project>CA67E4FB-5B50-4CE1-B23F-51201FFF1B6A</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/src/glfw.vcxproj">
+      <Project>30A6DEB7-C71F-4C81-BFCE-7E1DA2C15860</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/glfwinfo.vcxproj">
+      <Project>75F9336A-94F5-41AF-AB86-2C71C2F0ED40</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/examples/heightmap.vcxproj">
+      <Project>2C3D8BC5-659B-4123-9F41-2DA3405D13D0</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/iconify.vcxproj">
+      <Project>3BADD503-4273-446E-BA57-1C2F318619FE</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/joysticks.vcxproj">
+      <Project>C5226CC2-1278-4CF4-8A3C-1F5DC5EB251F</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/monitors.vcxproj">
+      <Project>F17E7E6D-281F-4F78-B7AC-A942A7A1CD0D</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/examples/particles.vcxproj">
+      <Project>5F4FFC3C-3EF1-4040-BE36-847A5DC60618</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/peter.vcxproj">
+      <Project>E8E257D1-1F69-45B3-BCA3-0797695D1698</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/reopen.vcxproj">
+      <Project>29C5D54B-D966-4299-A809-D521F366E394</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/sharing.vcxproj">
+      <Project>1593EB9E-E09D-4CEB-96D8-ECA5A6F379F4</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/examples/simple.vcxproj">
+      <Project>F470E439-30D6-4256-8CDB-5A0A1974F8BE</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/examples/splitview.vcxproj">
+      <Project>60BBE3F1-B78C-4588-9C37-9A13EE02AAE4</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/tearing.vcxproj">
+      <Project>E24ADA4E-148B-4363-92D0-A460A4B1CAA7</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/threads.vcxproj">
+      <Project>94F2DAB2-5256-4816-B7FA-D503A0152EF8</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/title.vcxproj">
+      <Project>D2C7FDA8-C265-4483-BAE2-706E6449E27A</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/examples/wave.vcxproj">
+      <Project>EFE853CD-752D-480F-BE01-828F34EA3CF4</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/aepp8_000/Source/Repos/Game-Engine/Lib/glfw-3.1.1/tests/windows.vcxproj">
+      <Project>A1E4F296-3477-44DB-B89D-B5B6CB45AEA2</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

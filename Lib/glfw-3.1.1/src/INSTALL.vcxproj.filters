@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\aepp8_000\Source\Repos\Game-Engine\Lib\glfw-3.1.1\CMakeFiles\6c16b8db8d58bc624b368088f0dff422\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{D3182D84-65AD-4DE9-99BC-01F525B68BC2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
