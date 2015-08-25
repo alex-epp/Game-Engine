@@ -15,17 +15,17 @@ namespace renderSystem
 		ChangeManager::get().add(this, {Message::MsgType::UPDATE_RENDERABLE});
 		//ChangeManager::get();
 	}
-
 	void RenderSystem::act()
 	{
-		auto &components = ComponentManager::get().getComponentsByType<RenderableComponent>();
-		for (auto it = components.begin(); it != components.end(); ++it)
-			cout << it->second->header << endl << it->second->text << endl << endl;
+		auto lights = std::get<ComponentContainer(LightComponent)>(components);
+		for (auto it = lights->begin(); it != lights->end(); ++it)
+			cout << it->second->radius << endl << endl;
 	}
 
+	
 	void RenderSystem::recieveMsg(Message* msg)
 	{
-		switch (msg->type)
+		/*switch (msg->type)
 		{
 		case Message::UPDATE_RENDERABLE:
 			{
@@ -35,6 +35,6 @@ namespace renderSystem
 				comp->header = m->header;
 				comp->text = m->text;
 			}
-		}
+		}*/
 	}
 }

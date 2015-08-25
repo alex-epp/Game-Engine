@@ -8,10 +8,6 @@
 #include <tuple>
 #include <algorithm>
 #include "utility.h"
-#include <glm/glm.hpp>
-#include <gl/GL.h>
-using glm::vec3;
-using glm::vec4;
 
 using namespace std;
 
@@ -87,68 +83,20 @@ namespace core
 	// System
 	// *****************************************************************************************************************
 
+	template <class... ComponentsLists>
 	class System : public Listener
 	{
 	protected:
 		time_t nextAct;
+		tuple<ComponentsLists...> components = {  };
 
 	public:
+		void init(ComponentsLists... c)
+		{
+			components = std::forward_as_tuple(c...);
+		}
 		virtual void act() = 0;
 	};
 
-	// RenderSystem components
-	class LightComponent // Designed to be passed into shaders (std140)
-	{
-		vec4 ambient, diffuse, specular;
-		vec3 position;
-		float radius;
-	};
-
-	class ComponentManager
-	{
-	private:
-
-		// This tuple must contain all the possible component types
-		tuple<map<EntityType, LightComponent*>> componentLists;
-		ComponentManager() = default;
-
-	public:
-
-		static ComponentManager &get()
-		{
-			static ComponentManager instance;
-
-			return instance;
-		}
-
-
-		template<class ComponentType, class... Args>
-		void addComponent(EntityType objectID, Args&&... args)
-		{
-			auto &theMap = std::get<map<EntityType, ComponentType*>>(componentLists);
-			theMap[objectID] = new ComponentType(std::forward<Args>(args)...);
-
-		}
-		
-		template <class ComponentType>
-		auto &getComponent(EntityType entity)
-		{
-			return std::get<map<EntityType, ComponentType*>>(componentLists)[entity];
-		}
-
-		template <class ComponentType>
-		auto &getComponentsByType()
-		{
-			return std::get<map<EntityType, ComponentType*>>(componentLists);
-		}
-
-		void cleanup()
-		{
-			for_each(componentLists, [](auto &m)
-			{
-				for (auto it = m.begin(); it != m.end(); ++it)
-					delete it->second;
-			});
-		}
-	};
+#define ComponentContainer(T) map<EntityType, T*>*
 }

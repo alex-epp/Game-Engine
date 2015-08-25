@@ -2,9 +2,14 @@
 
 #include <string>
 #include "../Core/Core.h"
+#include "../Lib/glew-1.13.0/include/GL/glew.h"
+#include "../Lib/glm/glm/glm.hpp"
+#include <gl/GL.h>
 
 using namespace std;
 using namespace core;
+using glm::vec4;
+using glm::vec3;
 
 // TODO: Add the following components:
 // * Lights. These should store colour, radius, etc
@@ -19,12 +24,20 @@ using namespace core;
 
 namespace renderSystem
 {
-	class RenderSystem : System
+	// RenderSystem components
+	struct LightComponent // Designed to be passed into shaders (std140)
+	{
+		vec4 ambient, diffuse, specular;
+		vec3 position;
+		float radius;
+	};
+
+	class RenderSystem : public System<ComponentContainer(LightComponent)>
 	{
 	public:
 		RenderSystem();
 
-		virtual void act();
 		virtual void recieveMsg(Message*);
+		virtual void act();
 	};
 }
