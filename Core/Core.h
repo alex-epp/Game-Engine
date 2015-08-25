@@ -8,6 +8,10 @@
 #include <tuple>
 #include <algorithm>
 #include "utility.h"
+#include <glm/glm.hpp>
+#include <gl/GL.h>
+using glm::vec3;
+using glm::vec4;
 
 using namespace std;
 
@@ -92,21 +96,20 @@ namespace core
 		virtual void act() = 0;
 	};
 
-	class RenderableComponent
+	// RenderSystem components
+	class LightComponent // Designed to be passed into shaders (std140)
 	{
-	public:
-		RenderableComponent(string h, string t) : header(h), text(t) {}
-
-		string header;
-		string text;
+		vec4 ambient, diffuse, specular;
+		vec3 position;
+		float radius;
 	};
-	
+
 	class ComponentManager
 	{
 	private:
 
 		// This tuple must contain all the possible component types
-		tuple<map<EntityType, RenderableComponent*>> componentLists;
+		tuple<map<EntityType, LightComponent*>> componentLists;
 		ComponentManager() = default;
 
 	public:
