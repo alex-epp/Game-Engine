@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 #include "../Core/Core.h"
+#include <glm/glm.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 using namespace std;
 using namespace core;
@@ -19,7 +21,12 @@ namespace renderSystem
 	{
 		auto lights = std::get<ComponentContainer(LightComponent)>(components);
 		for (auto it = lights->begin(); it != lights->end(); ++it)
-			cout << it->second->radius << endl << endl;
+			cout << it->second->radius << endl
+			     << glm::to_string(it->second->ambient) << endl
+				 << glm::to_string(it->second->diffuse) << endl
+				 << glm::to_string(it->second->position) << endl
+				 << glm::to_string(it->second->specular) << endl
+				 << endl;
 	}
 
 	

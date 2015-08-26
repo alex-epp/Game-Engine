@@ -5,6 +5,7 @@
 #include "../Lib/glew-1.13.0/include/GL/glew.h"
 #include "../Lib/glm/glm/glm.hpp"
 #include <gl/GL.h>
+#include "Model.h"
 
 using namespace std;
 using namespace core;
@@ -30,6 +31,11 @@ namespace renderSystem
 		vec4 ambient, diffuse, specular;
 		vec3 position;
 		float radius;
+	};
+
+	struct ModelComponent
+	{
+		Model model;
 	};
 
 	class RenderSystem : public System<ComponentContainer(LightComponent)>
