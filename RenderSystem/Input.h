@@ -4,7 +4,7 @@
 #include "Constants.h"
 #include <memory>
 
-class GameEngine;
+class RenderSystem;
 
 // This class must be a singleton because GLFW requires c-style callbacks
 class Input
@@ -15,7 +15,7 @@ public:
 		static Input instance;
 		return instance;
 	}
-	void init(GameEngine* engine); // Initialize the singleton
+	void init(RenderSystem* engine); // Initialize the singleton
 	void quit();
 
 	// GLFW callbacks
@@ -56,7 +56,7 @@ private:
 		initialized = false;
 	}
 
-	GameEngine* engine;
+	RenderSystem* engine;
 	bool initialized; // Needed to check whether 'engine' is valid
 };
 

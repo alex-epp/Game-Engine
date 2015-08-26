@@ -63,11 +63,12 @@ public:
 
 int main()
 {
-	// Create a new entity
+	/*// Create a new entity
 	ComponentManager::get().addComponent<LightComponent>(0);
 
 	// Create another entity
 	ComponentManager::get().addComponent<LightComponent>(1);
+	*/
 
 	// Create a render system
 	RenderSystem rs;

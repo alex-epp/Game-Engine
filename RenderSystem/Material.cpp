@@ -62,9 +62,9 @@ void Material::addToProgram(ShaderProgram& program)
 	for (int i = 0; i < static_cast<int>(ColourType::NumTypes); i++)
 			program.setUniform(Constants::COLOUR_NAMES[i], colours[i].val); // Defaults to white if the colour is not used
 
-	for (int i = 0; i < attribs.size(); i++)
+	for (auto &attrib : attribs)
 	{
-	 	program.setUniform(attribs[i].name, attribs[i].val);
+	 	program.setUniform(attrib.name, attrib.val);
 	}
 }
 

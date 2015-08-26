@@ -1,7 +1,10 @@
 #include "Input.h"
 #include "GameEngine.h"
 
-void Input::init(GameEngine* engine)
+#include "RenderSystem.h"
+
+
+void Input::init(RenderSystem* engine)
 {
 	this->engine = engine;
 	initialized = true;

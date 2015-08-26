@@ -5,6 +5,7 @@
 #include "../Lib/glew-1.13.0/include/GL/glew.h"
 #include "../Lib/glm/glm/glm.hpp"
 #include <gl/GL.h>
+#include <GLFW/glfw3.h>
 #include "Model.h"
 
 using namespace std;
@@ -25,17 +26,38 @@ using glm::vec3;
 
 namespace renderSystem
 {
-	// RenderSystem components
-	struct LightComponent // Designed to be passed into shaders (std140)
+	struct Light
 	{
 		vec4 ambient, diffuse, specular;
 		vec3 position;
 		float radius;
 	};
 
+	// RenderSystem components
+	struct LightComponent // Designed to be passed into shaders (std140)
+	{
+		Light light;
+	};
+
 	struct ModelComponent
 	{
 		Model model;
+	};
+
+	struct CameraComponent
+	{
+		// Stuff
+	};
+
+	struct FrameData
+	{
+		mat4 view;
+		mat4 projection;
+
+		float time;
+
+		int numLights; vec2 filler;
+		Light lights[Constants::MAX_LIGHTS];
 	};
 
 	class RenderSystem : public System<ComponentContainer(LightComponent)>
@@ -45,5 +67,10 @@ namespace renderSystem
 
 		virtual void recieveMsg(Message*);
 		virtual void act();
+
+	private:
+		GLFWwindow* window;
+		GLuint frameDataUBO;
+		FrameData frameData;
 	};
 }
