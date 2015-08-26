@@ -6,7 +6,10 @@ namespace core
 	{
 		type = UPDATE_RENDERABLE;
 	}
-
+	KeyChangeMessage::KeyChangeMessage(int k, bool d) : key(k), down(d) : Message(KEY_CHANGE)
+	{
+		type = KEY_CHANGE;
+	}
 	void ChangeManager::add(Listener *o, list<Message::MsgType> l)
 	{
 		for (auto it = l.begin(); it != l.end(); ++it)

@@ -25,6 +25,7 @@ namespace core
 		enum MsgType
 		{
 			UPDATE_RENDERABLE = 0,
+			KEY_CHANGE,
 			NUM_MSGS
 		};
 
@@ -42,6 +43,15 @@ namespace core
 
 		string header, text;
 		EntityType entityID;
+	};
+
+	class KeyChangeMessage : public Message
+	{
+	public:
+		KeyChangeMessage(int k, bool d);
+
+		int key;
+		bool down;
 	};
 
 	class Listener

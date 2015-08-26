@@ -18,6 +18,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGL Engine", "OpenGL Engine\OpenGL Engine.vcxproj", "{B9F26D51-9AFF-4485-90F9-94762783B164}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WindowContext", "WindowContext\WindowContext.vcxproj", "{42A18602-0B7B-4838-8B28-1FAE03EB974A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A1F24532-3E64-4F34-A3CC-D3FA2A45F208} = {A1F24532-3E64-4F34-A3CC-D3FA2A45F208}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

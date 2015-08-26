@@ -69,7 +69,18 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
@@ -136,6 +147,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WindowContext.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WindowContext.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
