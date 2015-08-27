@@ -1,11 +1,14 @@
 #pragma once
 
-#include <string>
+
 #include "../Core/Core.h"
-#include <GL/glew.h>
-#include "../Lib/glm/glm/glm.hpp"
-#include <gl/GL.h>
+
 #include "Model.h"
+
+#include <string>
+#include <GL/glew.h>
+#include <glm/glm.hpp>
+#include <gl/GL.h>
 
 using namespace std;
 using namespace core;
@@ -59,13 +62,23 @@ namespace renderSystem
 		Light lights[Constants::MAX_LIGHTS];
 	};
 
-	class RenderSystem : public System<ComponentContainer(LightComponent)>
+	class RenderSystem : public System<pComponentContainer(LightComponent), pComponentContainer(ModelComponent)>
 	{
 	public:
 		RenderSystem();
 
 		virtual void recieveMsg(Message*);
 		virtual void act();
+
+		static ModelComponent* createModel(string, string);
+
+		static auto createLight(string filename)
+		{
+			cout << "Loading light from: " << filename << endl;
+			return new LightComponent();
+		}
+
+		void init();
 
 	private:
 		GLuint frameDataUBO;

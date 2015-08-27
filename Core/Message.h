@@ -58,6 +58,7 @@ namespace core
 	{
 	public:
 		virtual void recieveMsg(Message*) = 0;
+		virtual ~Listener() = default;
 	};
 
 	class ChangeManager

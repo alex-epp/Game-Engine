@@ -15,9 +15,11 @@ namespace windowContext
 		WindowContext();
 		~WindowContext();
 
+		void init();
 		bool shouldQuit();
 		void cleanup();
 		void swapBuffers();
+		void act();
 
 		// Constants
 		static const int WINDOW_WIDTH;

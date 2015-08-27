@@ -1,9 +1,11 @@
 
+#include "../Core/Core.h"
+
 #include "RenderSystem.h"
+#include "utility.h"
 
 #include <string>
 #include <iostream>
-#include "../Core/Core.h"
 #include <GL/glew.h>
 #include <GL/GL.h>
 #include <glm/glm.hpp>
@@ -17,7 +19,33 @@ namespace renderSystem
 {
 	RenderSystem::RenderSystem()
 	{
-		ChangeManager::get().add(this, {Message::MsgType::UPDATE_RENDERABLE});
+	}
+	void RenderSystem::act()
+	{
+		map<EntityType, LightComponent*>* lights = std::get<pComponentContainer(LightComponent)>(components);
+		for (auto it = lights->begin(); it != lights->end(); ++it)
+			cout << it->second->light.radius << endl
+			     << glm::to_string(it->second->light.ambient) << endl
+				 << glm::to_string(it->second->light.diffuse) << endl
+				 << glm::to_string(it->second->light.position) << endl
+				 << glm::to_string(it->second->light.specular) << endl
+				 << endl;
+	}
+
+	ModelComponent* RenderSystem::createModel(string path, string filename)
+	{
+		cout << "Loading model from: " << filename << endl;
+		auto mc = new ModelComponent();
+		mc->model.loadFromFile(path, filename);
+
+		return mc;
+	}
+
+	void RenderSystem::init()
+	{
+		cout << "Creating render system" << endl;
+
+		ChangeManager::get().add(this, { Message::MsgType::UPDATE_RENDERABLE });
 
 		// Initialize GLEW
 		glewExperimental = GL_TRUE;
@@ -53,17 +81,6 @@ namespace renderSystem
 
 		// Some other book-keeping
 		frameData.numLights = 0;
-	}
-	void RenderSystem::act()
-	{
-		auto lights = std::get<ComponentContainer(LightComponent)>(components);
-		for (auto it = lights->begin(); it != lights->end(); ++it)
-			cout << it->second->light.radius << endl
-			     << glm::to_string(it->second->light.ambient) << endl
-				 << glm::to_string(it->second->light.diffuse) << endl
-				 << glm::to_string(it->second->light.position) << endl
-				 << glm::to_string(it->second->light.specular) << endl
-				 << endl;
 	}
 
 	

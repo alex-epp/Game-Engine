@@ -10,6 +10,16 @@ namespace windowContext
 
 	WindowContext::WindowContext()
 	{
+	}
+
+	WindowContext::~WindowContext()
+	{
+	}
+
+	void WindowContext::init()
+	{
+		cout << "Creating window context" << endl;
+
 		// Initialize GLFW
 		if (!glfwInit())
 		{
@@ -72,6 +82,10 @@ namespace windowContext
 	void WindowContext::swapBuffers()
 	{
 		glfwSwapBuffers(window);
+	}
+
+	void WindowContext::act()
+	{
 		glfwPollEvents();
 	}
 }

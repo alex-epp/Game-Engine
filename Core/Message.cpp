@@ -1,5 +1,7 @@
 #include "Message.h"
 
+#include "Types.h"
+
 namespace core
 {
 	UpdateRenderableMessage::UpdateRenderableMessage(string h, string t, EntityType e) : header(h), text(t), entityID(e), Message(UPDATE_RENDERABLE)

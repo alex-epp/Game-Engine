@@ -21,7 +21,7 @@ class ComponentManager
 private:
 
 	// This tuple must contain all the possible component types
-	tuple<map<EntityType, LightComponent*>> componentLists;
+	tuple<ComponentContainer(LightComponent), ComponentContainer(ModelComponent)> componentLists;
 	ComponentManager() = default;
 
 public:
@@ -40,6 +40,12 @@ public:
 		auto &theMap = std::get<map<EntityType, ComponentType*>>(componentLists);
 		theMap[objectID] = new ComponentType(std::forward<Args>(args)...);
 
+	}
+
+	template<class ComponentType>
+	void addComponent(EntityType objectID, ComponentType* component)
+	{
+		std::get<map<EntityType, ComponentType*>>(componentLists)[objectID] = component;
 	}
 
 	template <class ComponentType>
@@ -67,15 +73,17 @@ public:
 class GameEngine : public Listener
 {
 public:
-	GameEngine() : wc()
+	GameEngine()
 	{
-		ComponentManager::get().addComponent<ModelComponent>(0);
+		wc.init();
+		rs.init();
+
+		ComponentManager::get().addComponent<ModelComponent>(0, RenderSystem::createModel("../data/models/crytek-sponza/", "sponza2.obj"));
 
 		quit = false;
 		ChangeManager::get().add(this, { Message::WINDOW_CLOSE });
 
-		// Create a render system
-		rs.init(&ComponentManager::get().getComponentsByType<LightComponent>());
+		rs.setComponents(&ComponentManager::get().getComponentsByType<LightComponent>(), &ComponentManager::get().getComponentsByType<ModelComponent>());
 	}
 
 	void loop()
@@ -85,6 +93,7 @@ public:
 			// Execute the render logic
 			rs.act();
 			wc.swapBuffers();
+			wc.act();
 			ChangeManager::get().distrubuteMsgs();
 		}
 	}
