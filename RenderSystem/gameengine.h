@@ -5,7 +5,6 @@
 #include "Constants.h"
 #include "../Core/Logger.h"
 #include "Model.h"
-#include "Input.h"
 
 enum class LightType	
 {

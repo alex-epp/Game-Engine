@@ -4,10 +4,11 @@
 #include <string>
 #include <iostream>
 #include "../Core/Core.h"
+#include <GL/glew.h>
+#include <GL/GL.h>
 #include <glm/glm.hpp>
 #include <glm/gtx/string_cast.hpp>
-#include <GLFW/glfw3.h>
-#include "Input.h"
+
 
 using namespace std;
 using namespace core;
@@ -17,26 +18,6 @@ namespace renderSystem
 	RenderSystem::RenderSystem()
 	{
 		ChangeManager::get().add(this, {Message::MsgType::UPDATE_RENDERABLE});
-		
-		// Initialize glfw
-		if (!glfwInit())
-		{
-			LOG_ERR("Could not initialize glfw");
-			return;
-		}
-		// Multisampling
-		glfwWindowHint(GLFW_SAMPLES, 8);
-
-		GLFWmonitor* moniter = Constants::FULLSCREEN ? glfwGetPrimaryMonitor() : NULL;
-
-		window = glfwCreateWindow(Constants::WINDOW_WIDTH, Constants::WINDOW_HEIGHT, Constants::WINDOW_TITLE, moniter, NULL);
-		if (!window)
-		{
-			LOG_ERR("Could not create glfw window");
-			return;
-		}
-		glfwMakeContextCurrent(window);
-		glfwSwapInterval(1);
 
 		// Initialize GLEW
 		glewExperimental = GL_TRUE;
@@ -55,7 +36,6 @@ namespace renderSystem
 		if (!GLEW_VERSION_4_3)
 			LOG_WARN("OpenGL 4.3 is not supported");
 
-
 		// Initialize OpenGL
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_DEPTH_TEST);
@@ -64,12 +44,6 @@ namespace renderSystem
 		glViewport(0, 0, Constants::WINDOW_WIDTH, Constants::WINDOW_HEIGHT);
 		glClearColor(0.f, 0.f, 0.f, 1.f);
 		//glClearColor(1, 1, 1, 1);
-
-		// Create Input singleton
-		Input& inst = Input::getInstance(); // The first time getInstance() is called
-		inst.init(this);
-		glfwSetKeyCallback(window, Input::keyCallback);
-		glfwSetWindowSizeCallback(window, Input::resizeCallback);
 
 		// Create per-frame UBO
 		glGenBuffers(1, &frameDataUBO);

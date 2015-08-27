@@ -1,16 +1,20 @@
 #include "../RenderSystem/RenderSystem.h"
+#include "../WindowContext/WindowContext.h"
 #include <iostream>
 
 #ifdef _DEBUG
 #pragma comment (lib, "../Debug/RenderSystem.lib")
 #pragma comment (lib, "../Debug/Core.lib")
+#pragma comment (lib, "../Debug/WindowContext.lib")
 #else
 #pragma comment (lib, "../Release/RenderSystem.lib")
 #pragma comment (lib, "../Release/Core.lib")
+#pragma comment (lib, "../Release/WindowContext.lib")
 #endif
 
 using namespace std;
 using namespace renderSystem;
+using namespace windowContext;
 
 class ComponentManager
 {
@@ -60,29 +64,55 @@ public:
 	}
 };
 
+class GameEngine : public Listener
+{
+public:
+	GameEngine()
+	{
+		ComponentManager::get().addComponent<ModelComponent>(0);
+
+		quit = false;
+		ChangeManager::get().add(this, { Message::WINDOW_CLOSE });
+
+		WindowContext::get();
+
+		// Create a render system
+		rs.init(&ComponentManager::get().getComponentsByType<LightComponent>());
+	}
+
+	void loop()
+	{
+		while (!quit)
+		{
+			// Execute the render logic
+			rs.act();
+			WindowContext::get().swapBuffers();
+			ChangeManager::get().distrubuteMsgs();
+		}
+	}
+
+	~GameEngine()
+	{
+		// Cleanup the objects in memory
+		ComponentManager::get().cleanup();
+		WindowContext::get().cleanup();
+	}
+
+	virtual void recieveMsg(Message* msg)
+	{
+		switch (msg->type)
+		{
+		case Message::WINDOW_CLOSE:
+			quit = true;
+		}
+	}
+
+private:
+	bool quit;
+	RenderSystem rs;
+};
 
 int main()
 {
-	/*// Create a new entity
-	ComponentManager::get().addComponent<LightComponent>(0);
-
-	// Create another entity
-	ComponentManager::get().addComponent<LightComponent>(1);
-	*/
-
-	// Create a render system
-	RenderSystem rs;
-	rs.init(&ComponentManager::get().getComponentsByType<LightComponent> ());
-
-	// Send a message
-	ChangeManager::get().recieveMsg<UpdateRenderableMessage>("Hello", "World", 0);
-	ChangeManager::get().distrubuteMsgs();
-
-	// Execute the render logic
-	rs.act();
-
-	// Cleanup the objects in memory
-	ComponentManager::get().cleanup();
-
-	cin.get();
+	GameEngine().loop();
 }

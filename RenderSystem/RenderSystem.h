@@ -2,10 +2,9 @@
 
 #include <string>
 #include "../Core/Core.h"
-#include "../Lib/glew-1.13.0/include/GL/glew.h"
+#include <GL/glew.h>
 #include "../Lib/glm/glm/glm.hpp"
 #include <gl/GL.h>
-#include <GLFW/glfw3.h>
 #include "Model.h"
 
 using namespace std;
@@ -69,7 +68,6 @@ namespace renderSystem
 		virtual void act();
 
 	private:
-		GLFWwindow* window;
 		GLuint frameDataUBO;
 		FrameData frameData;
 	};

@@ -149,11 +149,15 @@
   <ItemGroup>
     <ClInclude Include="Core.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="Message.h" />
+    <ClInclude Include="System.h" />
+    <ClInclude Include="Types.h" />
     <ClInclude Include="utility.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Message.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

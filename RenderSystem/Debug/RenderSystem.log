@@ -1,22 +1,23 @@
-﻿Build started 2015-08-25 8:17:19 PM.
+﻿Build started 2015-08-26 8:51:44 PM.
      1>Project "C:\Users\aepp8_000\Source\Repos\Game-Engine\RenderSystem\RenderSystem.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\RenderSystem.pdb" /Gd /TP /analyze- /errorReport:prompt Input.cpp RenderSystem.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\RenderSystem.pdb" /Gd /TP /analyze- /errorReport:prompt RenderSystem.cpp
          RenderSystem.cpp
-     1>c:\program files (x86)\windows kits\8.1\include\shared\minwindef.h(130): warning C4005: 'APIENTRY': macro redefinition
-         c:\users\aepp8_000\source\repos\game-engine\lib\glfw-3.1.1\include\glfw\glfw3.h(85): note: see previous definition of 'APIENTRY'
-     1>c:\users\aepp8_000\source\repos\game-engine\rendersystem\rendersystem.cpp(70): error C2664: 'void Input::init(RenderSystem *)': cannot convert argument 1 from 'renderSystem::RenderSystem *const ' to 'RenderSystem *'
-         c:\users\aepp8_000\source\repos\game-engine\rendersystem\rendersystem.cpp(70): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-         Input.cpp
-     1>c:\program files (x86)\windows kits\8.1\include\shared\minwindef.h(130): warning C4005: 'APIENTRY': macro redefinition
-         c:\users\aepp8_000\source\repos\game-engine\lib\glfw-3.1.1\include\glfw\glfw3.h(85): note: see previous definition of 'APIENTRY'
-     1>c:\users\aepp8_000\source\repos\game-engine\rendersystem\input.cpp(27): error C2027: use of undefined type 'RenderSystem'
-         c:\users\aepp8_000\source\repos\game-engine\rendersystem\input.cpp(6): note: see declaration of 'RenderSystem'
-     1>c:\users\aepp8_000\source\repos\game-engine\rendersystem\input.cpp(27): error C2227: left of '->resizeWindow' must point to class/struct/union/generic type
-     1>c:\users\aepp8_000\source\repos\game-engine\rendersystem\input.cpp(26): warning C4390: ';': empty controlled statement found; is this the intent?
-         Generating Code...
-     1>Done Building Project "C:\Users\aepp8_000\Source\Repos\Game-Engine\RenderSystem\RenderSystem.vcxproj" (Build target(s)) -- FAILED.
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\Lib.exe /OUT:"C:\Users\aepp8_000\Source\Repos\Game-Engine\Debug\RenderSystem.lib" glew32.lib opengl32.lib /NOLOGO Debug\Constants.obj
+         Debug\main.obj
+         Debug\Material.obj
+         Debug\Mesh.obj
+         Debug\Model.obj
+         Debug\RenderSystem.obj
+         Debug\ShaderProgram.obj
+         Debug\VAO.obj
+         Debug\Vertex.obj
+     1>opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
+     1>opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+         RenderSystem.vcxproj -> C:\Users\aepp8_000\Source\Repos\Game-Engine\Debug\RenderSystem.lib
+     1>Done Building Project "C:\Users\aepp8_000\Source\Repos\Game-Engine\RenderSystem\RenderSystem.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:02.27
+Time Elapsed 00:00:02.56
