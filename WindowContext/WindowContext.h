@@ -6,12 +6,14 @@ using namespace core;
 
 namespace windowContext
 {
+	class Callbacks;
+	
 	class WindowContext
 	{
 	public:
-		static WindowContext &get();
-
-		~WindowContext() = default;
+		//static WindowContext &get();
+		WindowContext();
+		~WindowContext();
 
 		bool shouldQuit();
 		void cleanup();
@@ -23,7 +25,6 @@ namespace windowContext
 		static const char* WINDOW_TITLE;
 
 	private:
-		WindowContext();
 
 		// Input callbacks
 		//static void mouseBtnCallback(GLFWwindow* window, int button, int action, int mods);

@@ -1,23 +1,9 @@
-﻿Build started 2015-08-26 8:51:44 PM.
-     1>Project "C:\Users\aepp8_000\Source\Repos\Game-Engine\RenderSystem\RenderSystem.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\RenderSystem.pdb" /Gd /TP /analyze- /errorReport:prompt RenderSystem.cpp
-         RenderSystem.cpp
-       Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\Lib.exe /OUT:"C:\Users\aepp8_000\Source\Repos\Game-Engine\Debug\RenderSystem.lib" glew32.lib opengl32.lib /NOLOGO Debug\Constants.obj
-         Debug\main.obj
-         Debug\Material.obj
-         Debug\Mesh.obj
-         Debug\Model.obj
-         Debug\RenderSystem.obj
-         Debug\ShaderProgram.obj
-         Debug\VAO.obj
-         Debug\Vertex.obj
-     1>opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in glew32.lib(glew32.dll); second definition ignored
-     1>opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-         RenderSystem.vcxproj -> C:\Users\aepp8_000\Source\Repos\Game-Engine\Debug\RenderSystem.lib
-     1>Done Building Project "C:\Users\aepp8_000\Source\Repos\Game-Engine\RenderSystem\RenderSystem.vcxproj" (Build target(s)).
+﻿Build started 2015-08-27 8:03:51 AM.
+     1>Project "C:\Users\mepp1_000\Documents\GitHub\Game-Engine\RenderSystem\RenderSystem.vcxproj" on node 2 (Build target(s)).
+     1>Lib:
+         RenderSystem.vcxproj -> C:\Users\mepp1_000\Documents\GitHub\Game-Engine\Debug\RenderSystem.lib
+     1>Done Building Project "C:\Users\mepp1_000\Documents\GitHub\Game-Engine\RenderSystem\RenderSystem.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.56
+Time Elapsed 00:00:00.05

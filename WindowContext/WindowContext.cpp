@@ -28,6 +28,7 @@ namespace windowContext
 		}
 		glfwMakeContextCurrent(window);
 		glfwSwapInterval(1);
+		glfwSetWindowUserPointer(window, this);
 		quit = false;
 
 		// Initialize callbacks
@@ -39,12 +40,6 @@ namespace windowContext
 		glfwSetWindowCloseCallback(window, closeCallback);
 	}
 
-	WindowContext &WindowContext::get()
-	{
-		static WindowContext w;
-		return w;
-	}
-
 	bool WindowContext::shouldQuit()
 	{
 		return quit || glfwWindowShouldClose(window);
@@ -54,7 +49,7 @@ namespace windowContext
 	{
 		if (key == GLFW_KEY_ESCAPE)
 		{
-			get().quit = true;
+			reinterpret_cast<WindowContext*>(glfwGetWindowUserPointer(window))->quit = true;
 			ChangeManager::get().recieveMsg<WindowCloseMessage>();
 		}
 
@@ -64,7 +59,7 @@ namespace windowContext
 
 	void WindowContext::closeCallback(GLFWwindow * window)
 	{
-		get().quit = true;
+		reinterpret_cast<WindowContext*>(glfwGetWindowUserPointer(window))->quit = true;
 		ChangeManager::get().recieveMsg<WindowCloseMessage>();
 	}
 

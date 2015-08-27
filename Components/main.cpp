@@ -67,14 +67,12 @@ public:
 class GameEngine : public Listener
 {
 public:
-	GameEngine()
+	GameEngine() : wc()
 	{
 		ComponentManager::get().addComponent<ModelComponent>(0);
 
 		quit = false;
 		ChangeManager::get().add(this, { Message::WINDOW_CLOSE });
-
-		WindowContext::get();
 
 		// Create a render system
 		rs.init(&ComponentManager::get().getComponentsByType<LightComponent>());
@@ -86,7 +84,7 @@ public:
 		{
 			// Execute the render logic
 			rs.act();
-			WindowContext::get().swapBuffers();
+			wc.swapBuffers();
 			ChangeManager::get().distrubuteMsgs();
 		}
 	}
@@ -95,7 +93,6 @@ public:
 	{
 		// Cleanup the objects in memory
 		ComponentManager::get().cleanup();
-		WindowContext::get().cleanup();
 	}
 
 	virtual void recieveMsg(Message* msg)
@@ -110,6 +107,7 @@ public:
 private:
 	bool quit;
 	RenderSystem rs;
+	WindowContext wc;
 };
 
 int main()
