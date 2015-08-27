@@ -17,19 +17,36 @@ using namespace core;
 
 namespace renderSystem
 {
+	const float RenderSystem::FOV = 45.f;
+	const float RenderSystem::NEAR_PLANE = 0.1f;
+	const float RenderSystem::FAR_PLANE = 10'000.f;
+	const int RenderSystem::WINDOW_WIDTH = 640;
+	const int RenderSystem::WINDOW_HEIGHT = 480;
+	const char* RenderSystem::FRAME_UNIFORM_NAME = "FrameData";
+	int RenderSystem::FRAME_UNIFORM_INDEX;
+
 	RenderSystem::RenderSystem()
 	{
 	}
 	void RenderSystem::act()
 	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		map<EntityType, LightComponent*>* lights = std::get<pComponentContainer(LightComponent)>(components);
+		frameData.numLights = 0;
 		for (auto it = lights->begin(); it != lights->end(); ++it)
-			cout << it->second->light.radius << endl
-			     << glm::to_string(it->second->light.ambient) << endl
-				 << glm::to_string(it->second->light.diffuse) << endl
-				 << glm::to_string(it->second->light.position) << endl
-				 << glm::to_string(it->second->light.specular) << endl
-				 << endl;
+			frameData.lights[frameData.numLights++] = it->second->light;
+
+		frameData.projection = glm::perspective(FOV, WINDOW_WIDTH / static_cast<float>(WINDOW_HEIGHT), NEAR_PLANE, FAR_PLANE);
+		frameData.view = glm::lookAt(vec3(0, 600, -800),
+								vec3(0, 0, 0),
+								vec3(0, 1, 0));
+
+		map<EntityType, ModelComponent*>* models = std::get<pComponentContainer(ModelComponent)>(components);
+		for (auto it = models->begin(); it != models->end(); ++it)
+		{
+			it->second->model.render();
+		}
 	}
 
 	ModelComponent* RenderSystem::createModel(string path, string filename)
@@ -37,6 +54,7 @@ namespace renderSystem
 		cout << "Loading model from: " << filename << endl;
 		auto mc = new ModelComponent();
 		mc->model.loadFromFile(path, filename);
+		mc->model.attachUniformBlock(Constants::PERFRAME_UNIFORM_NAME, Constants::PERFRAME_UNIFORM_INDEX);
 
 		return mc;
 	}

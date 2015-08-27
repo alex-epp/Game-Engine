@@ -39,7 +39,7 @@ bool Model::loadFromFile(string filepath, string filename)
 		meshes.push_back(std::move(Mesh()));
 
 		// Create shaders
-		meshes[i].compileShaders("", Constants::BASIC_SHADER);
+		meshes[i].compileShaders(Constants::SHADER_PATH, Constants::BASIC_SHADER);
 		meshes[i].getProgram().use();
 
 		// Save material index for later

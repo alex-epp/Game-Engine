@@ -28,7 +28,7 @@ using glm::vec3;
 
 namespace renderSystem
 {
-	struct Light
+	struct Light // Designed to be passed into shaders (std140)
 	{
 		vec4 ambient, diffuse, specular;
 		vec3 position;
@@ -36,7 +36,7 @@ namespace renderSystem
 	};
 
 	// RenderSystem components
-	struct LightComponent // Designed to be passed into shaders (std140)
+	struct LightComponent
 	{
 		Light light;
 	};
@@ -72,13 +72,39 @@ namespace renderSystem
 
 		static ModelComponent* createModel(string, string);
 
-		static auto createLight(string filename)
+		static LightComponent* createLight(string filename)
 		{
 			cout << "Loading light from: " << filename << endl;
-			return new LightComponent();
-		}
 
+			ifstream file(filename.c_str());
+			if (!file)
+			{
+				LOG_ERR("Could not open light from ", filename);
+				return nullptr;
+			}
+			auto lightComponent = new LightComponent();
+			auto& l = lightComponent->light;
+
+			file >> l.ambient.r >> l.ambient.g >> l.ambient.b >> l.ambient.a;
+			file >> l.diffuse.r >> l.diffuse.g >> l.diffuse.b >> l.diffuse.a;
+			file >> l.specular.r >> l.specular.g >> l.specular.b >> l.specular.a;
+			file >> l.position.x >> l.position.y >> l.position.z;
+			file >> l.radius;
+
+			file.close();
+
+			return lightComponent;
+		}
+		
 		void init();
+
+		static const float FOV;
+		static const float NEAR_PLANE;
+		static const float FAR_PLANE;
+		static const int WINDOW_WIDTH;
+		static const int WINDOW_HEIGHT;
+		static const char* FRAME_UNIFORM_NAME;
+		static int FRAME_UNIFORM_INDEX;
 
 	private:
 		GLuint frameDataUBO;

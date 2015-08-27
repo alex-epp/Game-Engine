@@ -79,6 +79,7 @@ public:
 		rs.init();
 
 		ComponentManager::get().addComponent<ModelComponent>(0, RenderSystem::createModel("../data/models/crytek-sponza/", "sponza2.obj"));
+		ComponentManager::get().addComponent<LightComponent>(1, RenderSystem::createLight("../data/light.txt"));
 
 		quit = false;
 		ChangeManager::get().add(this, { Message::WINDOW_CLOSE });

@@ -63,5 +63,6 @@ public:
 
 	// Files
 	static const string BASIC_SHADER;
+	static const string SHADER_PATH;
 };
 

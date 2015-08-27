@@ -1,19 +1,20 @@
-﻿Build started 2015-08-27 1:32:39 PM.
-     1>Project "C:\Users\aepp8_000\Source\Repos\Game-Engine\Components\Components.vcxproj" on node 3 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
-         main.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\aepp8_000\Source\Repos\Game-Engine\Debug\Components.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\aepp8_000\Source\Repos\Game-Engine\Debug\Components.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\aepp8_000\Source\Repos\Game-Engine\Debug\Components.lib" /MACHINE:X86 Debug\main.obj
+﻿Build started 2015-08-27 4:20:24 PM.
+     1>Project "C:\Users\mepp1_000\Documents\GitHub\Game-Engine\Components\Components.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\mepp1_000\Documents\GitHub\Game-Engine\Debug\Components.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\mepp1_000\Documents\GitHub\Game-Engine\Debug\Components.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\mepp1_000\Documents\GitHub\Game-Engine\Debug\Components.lib" /MACHINE:X86 Debug\main.obj
          RenderSystem.lib(SOIL.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
      1>LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
      1>main.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
      1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
          Generating code
          Finished generating code
-         Components.vcxproj -> C:\Users\aepp8_000\Source\Repos\Game-Engine\Debug\Components.exe
-     1>Done Building Project "C:\Users\aepp8_000\Source\Repos\Game-Engine\Components\Components.vcxproj" (Build target(s)).
+     1>RenderSystem.lib(SOIL.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'RenderSystem.lib(SOIL.obj)' or at 'C:\Users\mepp1_000\Documents\GitHub\Game-Engine\Debug\SOIL.pdb'; linking object as if no debug info
+     1>RenderSystem.lib(image_helper.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'RenderSystem.lib(image_helper.obj)' or at 'C:\Users\mepp1_000\Documents\GitHub\Game-Engine\Debug\SOIL.pdb'; linking object as if no debug info
+     1>RenderSystem.lib(stb_image_aug.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'RenderSystem.lib(stb_image_aug.obj)' or at 'C:\Users\mepp1_000\Documents\GitHub\Game-Engine\Debug\SOIL.pdb'; linking object as if no debug info
+     1>RenderSystem.lib(image_DXT.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'RenderSystem.lib(image_DXT.obj)' or at 'C:\Users\mepp1_000\Documents\GitHub\Game-Engine\Debug\SOIL.pdb'; linking object as if no debug info
+         Components.vcxproj -> C:\Users\mepp1_000\Documents\GitHub\Game-Engine\Debug\Components.exe
+     1>Done Building Project "C:\Users\mepp1_000\Documents\GitHub\Game-Engine\Components\Components.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:03.23
+Time Elapsed 00:00:01.48
