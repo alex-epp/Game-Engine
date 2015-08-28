@@ -59,7 +59,7 @@ namespace renderSystem
 		float time;
 
 		int numLights; vec2 filler;
-		Light lights[Constants::MAX_LIGHTS];
+		Light lights[::Constants::MAX_LIGHTS];
 	};
 
 	class RenderSystem : public System<pComponentContainer(LightComponent), pComponentContainer(ModelComponent)>
@@ -74,7 +74,7 @@ namespace renderSystem
 
 		static LightComponent* createLight(string filename)
 		{
-			cout << "Loading light from: " << filename << endl;
+			LOG("Loading light from: ", filename);
 
 			ifstream file(filename.c_str());
 			if (!file)

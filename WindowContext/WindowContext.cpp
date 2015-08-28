@@ -18,7 +18,7 @@ namespace windowContext
 
 	void WindowContext::init()
 	{
-		cout << "Creating window context" << endl;
+		LOG("Creating window context");
 
 		// Initialize GLFW
 		if (!glfwInit())

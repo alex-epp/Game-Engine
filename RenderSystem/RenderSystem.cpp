@@ -51,17 +51,17 @@ namespace renderSystem
 
 	ModelComponent* RenderSystem::createModel(string path, string filename)
 	{
-		cout << "Loading model from: " << filename << endl;
+		LOG("Loading model from: ", filename);
 		auto mc = new ModelComponent();
 		mc->model.loadFromFile(path, filename);
-		mc->model.attachUniformBlock(Constants::PERFRAME_UNIFORM_NAME, Constants::PERFRAME_UNIFORM_INDEX);
+		mc->model.attachUniformBlock(::Constants::PERFRAME_UNIFORM_NAME, ::Constants::PERFRAME_UNIFORM_INDEX);
 
 		return mc;
 	}
 
 	void RenderSystem::init()
 	{
-		cout << "Creating render system" << endl;
+		LOG("Creating render system");
 
 		ChangeManager::get().add(this, { Message::MsgType::UPDATE_RENDERABLE });
 
@@ -87,7 +87,7 @@ namespace renderSystem
 		glEnable(GL_DEPTH_TEST);
 		glCullFace(GL_BACK);
 
-		glViewport(0, 0, Constants::WINDOW_WIDTH, Constants::WINDOW_HEIGHT);
+		glViewport(0, 0, ::Constants::WINDOW_WIDTH, ::Constants::WINDOW_HEIGHT);
 		glClearColor(0.f, 0.f, 0.f, 1.f);
 		//glClearColor(1, 1, 1, 1);
 
@@ -95,7 +95,7 @@ namespace renderSystem
 		glGenBuffers(1, &frameDataUBO);
 		glBindBuffer(GL_UNIFORM_BUFFER, frameDataUBO);
 		glBufferData(GL_UNIFORM_BUFFER, sizeof(FrameData), NULL, GL_STREAM_DRAW);
-		glBindBufferRange(GL_UNIFORM_BUFFER, Constants::PERFRAME_UNIFORM_INDEX, frameDataUBO, 0, sizeof(FrameData));
+		glBindBufferRange(GL_UNIFORM_BUFFER, ::Constants::PERFRAME_UNIFORM_INDEX, frameDataUBO, 0, sizeof(FrameData));
 
 		// Some other book-keeping
 		frameData.numLights = 0;

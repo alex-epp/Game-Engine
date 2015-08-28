@@ -75,6 +75,8 @@ class GameEngine : public Listener
 public:
 	GameEngine()
 	{
+		LOG(core::Constants::get().getNum<int>("x"));
+
 		wc.init();
 		rs.init();
 
@@ -103,6 +105,7 @@ public:
 	{
 		// Cleanup the objects in memory
 		ComponentManager::get().cleanup();
+		core::Constants::get().cleanup();
 	}
 
 	virtual void recieveMsg(Message* msg)

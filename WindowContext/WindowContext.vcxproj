@@ -70,18 +70,18 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;$(IncludePath)</IncludePath>
+    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;..\Lib\lua-5.3.1\src;$(IncludePath)</IncludePath>
     <LibraryPath>..\Lib\glfw-3.1.1\src\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;$(IncludePath)</IncludePath>
+    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;..\Lib\lua-5.3.1\src;$(IncludePath)</IncludePath>
     <LibraryPath>..\Lib\glfw-3.1.1\src\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;$(IncludePath)</IncludePath>
+    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;..\Lib\lua-5.3.1\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;$(IncludePath)</IncludePath>
+    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;..\Lib\lua-5.3.1\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
