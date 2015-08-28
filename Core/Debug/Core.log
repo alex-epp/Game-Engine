@@ -1,14 +1,10 @@
-﻿Build started 2015-08-28 2:31:03 PM.
+﻿Build started 2015-08-28 4:26:23 PM.
      1>Project "C:\Users\mepp1_000\Documents\GitHub\Game-Engine\Core\Core.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\Core.pdb" /Gd /TP /analyze- /errorReport:prompt Constants.cpp Core.cpp Logger.cpp
-         Core.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\Core.pdb" /Gd /TP /analyze- /errorReport:prompt Constants.cpp
          Constants.cpp
      1>c:\users\mepp1_000\documents\github\game-engine\core\constants.cpp(31): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-         Generating Code...
-         Compiling...
-         Logger.cpp
-         Generating Code...
+     1>c:\users\mepp1_000\documents\github\game-engine\core\constants.cpp(105): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
        Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\Lib.exe /OUT:"C:\Users\mepp1_000\Documents\GitHub\Game-Engine\Debug\Core.lib" lua5.3.1.lib /NOLOGO Debug\Constants.obj
          Debug\Core.obj
@@ -20,4 +16,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.11
+Time Elapsed 00:00:01.82

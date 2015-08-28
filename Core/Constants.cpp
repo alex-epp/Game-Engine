@@ -29,6 +29,8 @@ namespace core
 				stringVals[name] = lua_tostring(L, -1);
 			else if (lua_isboolean(L, -1))
 				boolVals[name] = static_cast<bool>(lua_toboolean(L, -1));
+			else if (lua_istable(L, -1))
+				loadTable(name, -1);
 
 			lua_pop(L, 1);
 		}
@@ -49,6 +51,7 @@ namespace core
 
 	void Constants::cleanup()
 	{
+		lua_pop(L, lua_gettop(L));
 		lua_close(L);
 	}
 
@@ -84,6 +87,29 @@ namespace core
 			}
 		}
 		lua_pop(L, lua_gettop(L));
+	}
+
+	void Constants::loadTable(const string& name, int index)
+	{
+		lua_pushnil(L);
+
+		//index--;
+
+		while (lua_next(L, -2))
+		{
+			if (lua_isnumber(L, -1))
+				numArrayVals[name].push_back(lua_tonumber(L, -1));
+			else if (lua_isstring(L, -1))
+				stringArrayVals[name].push_back(lua_tostring(L, -1));
+			else if (lua_isboolean(L, -1))
+				boolArrayVals[name].push_back(lua_toboolean(L, -1));
+			else if (lua_istable(L, -1))
+				LOG_WARN("Constants::loadTable cannot load multidimensional tables");
+
+			
+			lua_pop(L, 1);
+
+		}
 	}
 
 }

@@ -42,6 +42,8 @@ namespace renderSystem
 								vec3(0, 0, 0),
 								vec3(0, 1, 0));
 
+		updateFrameData();
+
 		map<EntityType, ModelComponent*>* models = std::get<pComponentContainer(ModelComponent)>(components);
 		for (auto it = models->begin(); it != models->end(); ++it)
 		{
@@ -99,6 +101,12 @@ namespace renderSystem
 
 		// Some other book-keeping
 		frameData.numLights = 0;
+	}
+
+	void RenderSystem::updateFrameData()
+	{
+		glBindBuffer(GL_UNIFORM_BUFFER, frameDataUBO);
+		glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(FrameData), &frameData);
 	}
 
 	

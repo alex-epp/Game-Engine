@@ -139,7 +139,7 @@ namespace core
 			break;
 		}
 		print_impl(args...);
-		//writeMutex.unlock();
+		writeMutex.unlock();
 	}
 
 	template<typename LogPolicy>

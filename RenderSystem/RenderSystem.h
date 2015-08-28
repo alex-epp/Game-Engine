@@ -107,6 +107,8 @@ namespace renderSystem
 		static int FRAME_UNIFORM_INDEX;
 
 	private:
+		void updateFrameData();
+
 		GLuint frameDataUBO;
 		FrameData frameData;
 	};

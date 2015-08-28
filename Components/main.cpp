@@ -75,10 +75,13 @@ class GameEngine : public Listener
 public:
 	GameEngine()
 	{
-		LOG(core::Constants::get().getNum<int>("x"));
-
 		wc.init();
 		rs.init();
+
+		core::Constants::get().getNum<int>("x");
+		const auto& days = core::Constants::get().getStringArray("days");
+		for (const auto& day : days)
+			LOG(day);
 
 		ComponentManager::get().addComponent<ModelComponent>(0, RenderSystem::createModel("../data/models/crytek-sponza/", "sponza2.obj"));
 		ComponentManager::get().addComponent<LightComponent>(1, RenderSystem::createLight("../data/light.txt"));
