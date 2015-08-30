@@ -4,13 +4,11 @@
 
 namespace core
 {
-	UpdateRenderableMessage::UpdateRenderableMessage(string h, string t, EntityType e) : header(h), text(t), entityID(e), Message(UPDATE_RENDERABLE)
+	ResizeWindowMessage::ResizeWindowMessage(int w, int h) : width(w), height(h), Message(RESIZE_WINDOW)
 	{
-		type = UPDATE_RENDERABLE;
 	}
 	KeyChangeMessage::KeyChangeMessage(int k, bool d) : key(k), down(d), Message(KEY_CHANGE)
 	{
-		type = KEY_CHANGE;
 	}
 	void ChangeManager::add(Listener *o, list<Message::MsgType> l)
 	{

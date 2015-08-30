@@ -18,6 +18,8 @@ namespace windowContext
 
 	void WindowContext::init()
 	{
+		ChangeManager::get().add(this, { Message::MsgType::SET_MOUSE });
+
 		cout << "Creating window context" << endl;
 
 		// Initialize GLFW
@@ -43,16 +45,25 @@ namespace windowContext
 
 		// Initialize callbacks
 		//glfwSetMouseButtonCallback(window, mouseBtnCallback);
-		//glfwSetCursorPosCallback(window, cursorPosCallback);
+		glfwSetCursorPosCallback(window, cursorPosCallback);
 		//glfwSetCursorEnterCallback(window, cursorEnterCallback);
 		//glfwSetScrollCallback(window, scrollCallback);
 		glfwSetKeyCallback(window, keyCallback);
 		glfwSetWindowCloseCallback(window, closeCallback);
+		glfwSetWindowSizeCallback(window, sizeCallback);
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+		ChangeManager::get().recieveMsg<ResizeWindowMessage>(WINDOW_WIDTH, WINDOW_HEIGHT);
 	}
 
 	bool WindowContext::shouldQuit()
 	{
 		return quit || glfwWindowShouldClose(window);
+	}
+
+	void WindowContext::cursorPosCallback(GLFWwindow* window, double x, double y)
+	{
+		ChangeManager::get().recieveMsg<MouseMessage>(static_cast<int>(x), static_cast<int>(y));
 	}
 
 	void WindowContext::keyCallback(GLFWwindow * window, int key, int scancode, int action, int mods)
@@ -73,6 +84,11 @@ namespace windowContext
 		ChangeManager::get().recieveMsg<WindowCloseMessage>();
 	}
 
+	void WindowContext::sizeCallback(GLFWwindow* window, int width, int height)
+	{
+		ChangeManager::get().recieveMsg<ResizeWindowMessage>(width, height);
+	}
+
 	void WindowContext::cleanup()
 	{
 		glfwDestroyWindow(window);
@@ -87,5 +103,17 @@ namespace windowContext
 	void WindowContext::act()
 	{
 		glfwPollEvents();
+	}
+
+	void WindowContext::recieveMsg(Message* m)
+	{
+		switch (m->type)
+		{
+		case Message::MsgType::SET_MOUSE:
+		{
+			auto setMouseMsg = dynamic_cast<SetMouseMessage*>(m);
+			glfwSetCursorPos(window, setMouseMsg->x, setMouseMsg->y);
+		}
+		}
 	}
 }

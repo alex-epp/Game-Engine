@@ -17,9 +17,11 @@ namespace core
 	public:
 		enum MsgType
 		{
-			UPDATE_RENDERABLE = 0,
+			RESIZE_WINDOW = 0,
 			KEY_CHANGE,
 			WINDOW_CLOSE,
+			MOUSE,
+			SET_MOUSE,
 			NUM_MSGS
 		};
 
@@ -30,13 +32,36 @@ namespace core
 
 	};
 
-	class UpdateRenderableMessage : public Message
+	class MouseMessage : public Message
 	{
 	public:
-		UpdateRenderableMessage(string h, string t, EntityType entityID);
+		int x, y;
 
-		string header, text;
-		EntityType entityID;
+		enum class Button
+		{
+			None = 0,
+			Left = 1,
+			Middle = 2,
+			Right = 3
+		} button;
+
+		MouseMessage(int _x, int _y, Button b = Button::None) : x(_x), y(_y), button(b), Message(MsgType::MOUSE) {}
+	};
+
+	class SetMouseMessage : public Message
+	{
+	public:
+		int x, y;
+
+		SetMouseMessage(int _x, int _y) : x(_x), y(_y), Message(MsgType::SET_MOUSE) {}
+	};
+
+	class ResizeWindowMessage : public Message
+	{
+	public:
+		ResizeWindowMessage(int w, int h);
+
+		int width, height;
 	};
 
 	class KeyChangeMessage : public Message

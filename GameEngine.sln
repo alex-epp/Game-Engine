@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Components", "Components\Components.vcxproj", "{2904B562-0A2B-4932-9FFD-8C06DCB6FC70}"
 	ProjectSection(ProjectDependencies) = postProject
 		{42A18602-0B7B-4838-8B28-1FAE03EB974A} = {42A18602-0B7B-4838-8B28-1FAE03EB974A}
+		{5B2E6287-15F0-45BB-8D79-2B2CDE5434A6} = {5B2E6287-15F0-45BB-8D79-2B2CDE5434A6}
 		{156EFE89-1A75-4F8E-9FEF-3441E7BD9E5B} = {156EFE89-1A75-4F8E-9FEF-3441E7BD9E5B}
 	EndProjectSection
 EndProject
@@ -22,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WindowContext", "WindowCont
 	ProjectSection(ProjectDependencies) = postProject
 		{A1F24532-3E64-4F34-A3CC-D3FA2A45F208} = {A1F24532-3E64-4F34-A3CC-D3FA2A45F208}
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PlayerController", "PlayerController\PlayerController.vcxproj", "{5B2E6287-15F0-45BB-8D79-2B2CDE5434A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +74,14 @@ Global
 		{42A18602-0B7B-4838-8B28-1FAE03EB974A}.Release|x64.Build.0 = Release|x64
 		{42A18602-0B7B-4838-8B28-1FAE03EB974A}.Release|x86.ActiveCfg = Release|Win32
 		{42A18602-0B7B-4838-8B28-1FAE03EB974A}.Release|x86.Build.0 = Release|Win32
+		{5B2E6287-15F0-45BB-8D79-2B2CDE5434A6}.Debug|x64.ActiveCfg = Debug|x64
+		{5B2E6287-15F0-45BB-8D79-2B2CDE5434A6}.Debug|x64.Build.0 = Debug|x64
+		{5B2E6287-15F0-45BB-8D79-2B2CDE5434A6}.Debug|x86.ActiveCfg = Debug|Win32
+		{5B2E6287-15F0-45BB-8D79-2B2CDE5434A6}.Debug|x86.Build.0 = Debug|Win32
+		{5B2E6287-15F0-45BB-8D79-2B2CDE5434A6}.Release|x64.ActiveCfg = Release|x64
+		{5B2E6287-15F0-45BB-8D79-2B2CDE5434A6}.Release|x64.Build.0 = Release|x64
+		{5B2E6287-15F0-45BB-8D79-2B2CDE5434A6}.Release|x86.ActiveCfg = Release|Win32
+		{5B2E6287-15F0-45BB-8D79-2B2CDE5434A6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

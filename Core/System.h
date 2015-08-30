@@ -2,6 +2,8 @@
 
 #include <tuple>
 #include <algorithm>
+#include <glm/glm.hpp>
+#include <glm/gtx/quaternion.hpp>
 
 #include "Message.h"
 
@@ -9,6 +11,14 @@ using namespace std;
 
 namespace core
 {
+	struct TransformComponent
+	{
+		TransformComponent(glm::vec3 p = { 0, 0, 0 }, glm::quat r = { 0, 0, 0, 1}) : position(p), rotation(r) {}
+
+		glm::vec3 position;
+		glm::quat rotation;
+	};
+
 	template <class... ComponentsLists>
 	class System : public Listener
 	{

@@ -48,7 +48,11 @@ namespace renderSystem
 
 	struct CameraComponent
 	{
-		// Stuff
+		CameraComponent(float fov = 45.f, glm::vec3 u = { 0.f, 1.f, 0.f }, float np = 0.1f, float fp = 100.f) : FOV(fov), up(u), nearPlane(np), farPlane(fp) {}
+
+		float FOV;
+		float nearPlane, farPlane;
+		glm::vec3 up;
 	};
 
 	struct FrameData
@@ -62,7 +66,10 @@ namespace renderSystem
 		Light lights[Constants::MAX_LIGHTS];
 	};
 
-	class RenderSystem : public System<pComponentContainer(LightComponent), pComponentContainer(ModelComponent)>
+	class RenderSystem : public System<pComponentContainer(LightComponent),
+									   pComponentContainer(ModelComponent),
+									   pComponentContainer(CameraComponent),
+									   pComponentContainer(TransformComponent)>
 	{
 	public:
 		RenderSystem();
@@ -109,5 +116,6 @@ namespace renderSystem
 	private:
 		GLuint frameDataUBO;
 		FrameData frameData;
+		float aspectRatio;
 	};
 }

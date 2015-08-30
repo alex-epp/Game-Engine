@@ -8,7 +8,7 @@ namespace windowContext
 {
 	class Callbacks;
 	
-	class WindowContext
+	class WindowContext : public Listener
 	{
 	public:
 		//static WindowContext &get();
@@ -21,6 +21,8 @@ namespace windowContext
 		void swapBuffers();
 		void act();
 
+		virtual void recieveMsg(Message*);
+
 		// Constants
 		static const int WINDOW_WIDTH;
 		static const int WINDOW_HEIGHT;
@@ -30,11 +32,12 @@ namespace windowContext
 
 		// Input callbacks
 		//static void mouseBtnCallback(GLFWwindow* window, int button, int action, int mods);
-		//static void cursorPosCallback(GLFWwindow* window, double x, double y);
+		static void cursorPosCallback(GLFWwindow* window, double x, double y);
 		//static void cursorEnterCallback(GLFWwindow* window, int entered);
 		//static void scrollCallback(GLFWwindow* window, double x, double y);
 		static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 		static void closeCallback(GLFWwindow* window);
+		static void sizeCallback(GLFWwindow* window, int width, int height);
 
 		GLFWwindow* window;
 

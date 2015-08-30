@@ -1,27 +1,36 @@
 #include "../RenderSystem/RenderSystem.h"
 #include "../WindowContext/WindowContext.h"
+#include "../PlayerController/PlayerControllerSystem.h"
 #include <iostream>
 
 #ifdef _DEBUG
 #pragma comment (lib, "../Debug/RenderSystem.lib")
 #pragma comment (lib, "../Debug/Core.lib")
 #pragma comment (lib, "../Debug/WindowContext.lib")
+#pragma comment (lib, "../Debug/PlayerController.lib")
 #else
 #pragma comment (lib, "../Release/RenderSystem.lib")
 #pragma comment (lib, "../Release/Core.lib")
 #pragma comment (lib, "../Release/WindowContext.lib")
+#pragma comment (lib, "../Release/PlayerController.lib")
 #endif
 
 using namespace std;
 using namespace renderSystem;
 using namespace windowContext;
+using namespace playerControllerSystem;
 
 class ComponentManager
 {
 private:
 
 	// This tuple must contain all the possible component types
-	tuple<ComponentContainer(LightComponent), ComponentContainer(ModelComponent)> componentLists;
+	tuple<ComponentContainer(LightComponent),
+		ComponentContainer(ModelComponent),
+		ComponentContainer(CameraComponent),
+		ComponentContainer(TransformComponent),
+		ComponentContainer(PlayerControllerComponent)> componentLists;
+
 	ComponentManager() = default;
 
 public:
@@ -77,14 +86,24 @@ public:
 	{
 		wc.init();
 		rs.init();
+		pcs.init();
 
 		ComponentManager::get().addComponent<ModelComponent>(0, RenderSystem::createModel("../data/models/crytek-sponza/", "sponza2.obj"));
 		ComponentManager::get().addComponent<LightComponent>(1, RenderSystem::createLight("../data/light.txt"));
+		ComponentManager::get().addComponent<CameraComponent>(2, 45.f, glm::vec3(0, 1, 0), 0.1f, 10'000.f);
+		ComponentManager::get().addComponent<TransformComponent>(2, glm::vec3(0, 600, 0), glm::angleAxis(0.f, glm::vec3(0, 1, 0) ) );
+		ComponentManager::get().addComponent<PlayerControllerComponent>(2);
 
 		quit = false;
 		ChangeManager::get().add(this, { Message::WINDOW_CLOSE });
 
-		rs.setComponents(&ComponentManager::get().getComponentsByType<LightComponent>(), &ComponentManager::get().getComponentsByType<ModelComponent>());
+		rs.setComponents(&ComponentManager::get().getComponentsByType<LightComponent>(),
+			&ComponentManager::get().getComponentsByType<ModelComponent>(),
+			&ComponentManager::get().getComponentsByType<CameraComponent>(),
+			&ComponentManager::get().getComponentsByType<TransformComponent>());
+
+		pcs.setComponents(&ComponentManager::get().getComponentsByType<TransformComponent>(),
+			&ComponentManager::get().getComponentsByType<PlayerControllerComponent>());
 	}
 
 	void loop()
@@ -93,6 +112,7 @@ public:
 		{
 			// Execute the render logic
 			rs.act();
+			pcs.act();
 			wc.swapBuffers();
 			wc.act();
 			ChangeManager::get().distrubuteMsgs();
@@ -117,6 +137,7 @@ public:
 private:
 	bool quit;
 	RenderSystem rs;
+	PlayerControllerSystem pcs;
 	WindowContext wc;
 };
 
