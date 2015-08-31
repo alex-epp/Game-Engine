@@ -1,3 +1,5 @@
+#if 0
+
 #pragma once
 #include <string>
 using namespace std;
@@ -66,3 +68,4 @@ public:
 	static const string SHADER_PATH;
 };
 
+#endif

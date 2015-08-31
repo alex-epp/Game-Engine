@@ -1,5 +1,7 @@
 #include "Model.h"
 #include "../Core/Logger.h"
+#include "../Core/Constants.h"
+using core::Constants;
 
 Model::Model()
 {
@@ -39,7 +41,7 @@ bool Model::loadFromFile(string filepath, string filename)
 		meshes.push_back(std::move(Mesh()));
 
 		// Create shaders
-		meshes[i].compileShaders(Constants::SHADER_PATH, Constants::BASIC_SHADER);
+		meshes[i].compileShaders(Constants::get().getString("shader_path"), Constants::get().getString("basic_shader"));
 		meshes[i].getProgram().use();
 
 		// Save material index for later
@@ -98,32 +100,32 @@ bool Model::loadFromFile(string filepath, string filename)
 			if (matIndices[j] != i) continue;
 
 			if (mat->GetTexture(aiTextureType_DIFFUSE, texIndex, &textureFile) == AI_SUCCESS)  // Diffuse
-				mesh.getMaterial().addTexture(filepath + textureFile.C_Str(), TextureType::Diffuse);
+				mesh.getMaterial().addTexture(filepath + textureFile.C_Str(), Material::TextureType::Diffuse);
 			if (mat->GetTexture(aiTextureType_SPECULAR, texIndex, &textureFile) == AI_SUCCESS) // Specular
-				mesh.getMaterial().addTexture(filepath + textureFile.C_Str(), TextureType::Specular);
+				mesh.getMaterial().addTexture(filepath + textureFile.C_Str(), Material::TextureType::Specular);
 			if (mat->GetTexture(aiTextureType_SHININESS, texIndex, &textureFile) == AI_SUCCESS)  // Shininess (exponent)
-				mesh.getMaterial().addTexture(filepath + textureFile.C_Str(), TextureType::Shininess);
+				mesh.getMaterial().addTexture(filepath + textureFile.C_Str(), Material::TextureType::Shininess);
 			if (mat->GetTexture(aiTextureType_NORMALS, texIndex, &textureFile) == AI_SUCCESS)  // Normals
-				mesh.getMaterial().addTexture(filepath + textureFile.C_Str(), TextureType::Normals);
+				mesh.getMaterial().addTexture(filepath + textureFile.C_Str(), Material::TextureType::Normals);
 
 			if (mat->Get(AI_MATKEY_TEXTURE_HEIGHT(0), textureFile) == AI_SUCCESS)
 			{
-				mesh.getMaterial().addTexture(filepath + textureFile.C_Str(), TextureType::Normals);
+				mesh.getMaterial().addTexture(filepath + textureFile.C_Str(), Material::TextureType::Normals);
 			}
 				
 
 			// Material colours
 			if (mat->Get(AI_MATKEY_COLOR_DIFFUSE, col) == AI_SUCCESS)  // Diffuse
-				mesh.getMaterial().addColour(vec3(col.r, col.g, col.b), ColourType::Diffuse);
+				mesh.getMaterial().addColour(vec3(col.r, col.g, col.b), Material::ColourType::Diffuse);
 			if (mat->Get(AI_MATKEY_COLOR_AMBIENT, col) == AI_SUCCESS)  // Ambient
-				mesh.getMaterial().addColour(vec3(col.r, col.g, col.b), ColourType::Ambient);
+				mesh.getMaterial().addColour(vec3(col.r, col.g, col.b), Material::ColourType::Ambient);
 			if (mat->Get(AI_MATKEY_COLOR_SPECULAR, col) == AI_SUCCESS) // Specular
-				mesh.getMaterial().addColour(vec3(col.r, col.g, col.b), ColourType::Specular);
+				mesh.getMaterial().addColour(vec3(col.r, col.g, col.b), Material::ColourType::Specular);
 
 			// Other constants
 			float val;
 			if (mat->Get(AI_MATKEY_SHININESS, val) == AI_SUCCESS) // Shininess (exponent)
-				mesh.getMaterial().addAttrib(val, Constants::SHININESS_NAME);
+				mesh.getMaterial().addAttrib(val, Constants::get().getString("shininess_name"));
 
 			// Load the material into the shaders
 			mesh.getProgram().use();
@@ -148,7 +150,7 @@ void Model::render()
 	{
 		//meshes[i].getProgram().setUniform(Constants::VIEW_MATRIX_LOCATION, viewMatrix);
 		//meshes[i].getProgram().setUniform(Constants::PROJECTION_MATRIX_LOCATION, projectionMatrix);
-		meshes[i].getProgram().setUniform(Constants::MODEL_MATRIX_LOCATION, getModelMatrix());
+		meshes[i].getProgram().setUniform(Constants::get().getString("model_matrix_location"), getModelMatrix());
 		meshes[i].render();
 	}
 }

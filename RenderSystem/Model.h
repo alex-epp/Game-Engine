@@ -7,7 +7,6 @@
 #include <glm\gtc\matrix_transform.hpp>
 #include <vector>
 #include "Mesh.h"
-#include "Constants.h"
 
 using glm::mat4;
 using glm::vec3;

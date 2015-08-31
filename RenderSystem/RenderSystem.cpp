@@ -17,16 +17,15 @@ using namespace core;
 
 namespace renderSystem
 {
-	const float RenderSystem::FOV = 45.f;
-	const float RenderSystem::NEAR_PLANE = 0.1f;
-	const float RenderSystem::FAR_PLANE = 10'000.f;
-	const int RenderSystem::WINDOW_WIDTH = 640;
-	const int RenderSystem::WINDOW_HEIGHT = 480;
-	const char* RenderSystem::FRAME_UNIFORM_NAME = "FrameData";
-	int RenderSystem::FRAME_UNIFORM_INDEX;
-
 	RenderSystem::RenderSystem()
 	{
+		FOV = Constants::get().getNum<float>("FOV");
+		nearPlane = Constants::get().getNum<float>("near_plane");
+		farPlane = Constants::get().getNum<float>("far_plane");
+		windowWidth = Constants::get().getNum<int>("window_width");
+		windowHeight = Constants::get().getNum<int>("window_height");
+		perframeUniformName = Constants::get().getString("frame_uniform_name");
+		perframeUniformIndex = Constants::get().getNum<int>("frame_uniform_index");
 	}
 	void RenderSystem::act()
 	{
@@ -37,7 +36,7 @@ namespace renderSystem
 		for (auto it = lights->begin(); it != lights->end(); ++it)
 			frameData.lights[frameData.numLights++] = it->second->light;
 
-		frameData.projection = glm::perspective(FOV, WINDOW_WIDTH / static_cast<float>(WINDOW_HEIGHT), NEAR_PLANE, FAR_PLANE);
+		frameData.projection = glm::perspective(FOV, windowWidth / static_cast<float>(windowHeight), nearPlane, farPlane);
 		frameData.view = glm::lookAt(vec3(0, 600, -800),
 								vec3(0, 0, 0),
 								vec3(0, 1, 0));
@@ -56,7 +55,7 @@ namespace renderSystem
 		LOG("Loading model from: ", filename);
 		auto mc = new ModelComponent();
 		mc->model.loadFromFile(path, filename);
-		mc->model.attachUniformBlock(::Constants::PERFRAME_UNIFORM_NAME, ::Constants::PERFRAME_UNIFORM_INDEX);
+		mc->model.attachUniformBlock(Constants::get().getString("perframe_uniform_name"), Constants::get().getNum<int>("perframe_uniform_index"));
 
 		return mc;
 	}
@@ -89,7 +88,7 @@ namespace renderSystem
 		glEnable(GL_DEPTH_TEST);
 		glCullFace(GL_BACK);
 
-		glViewport(0, 0, ::Constants::WINDOW_WIDTH, ::Constants::WINDOW_HEIGHT);
+		glViewport(0, 0, windowWidth, windowHeight);
 		glClearColor(0.f, 0.f, 0.f, 1.f);
 		//glClearColor(1, 1, 1, 1);
 
@@ -97,7 +96,7 @@ namespace renderSystem
 		glGenBuffers(1, &frameDataUBO);
 		glBindBuffer(GL_UNIFORM_BUFFER, frameDataUBO);
 		glBufferData(GL_UNIFORM_BUFFER, sizeof(FrameData), NULL, GL_STREAM_DRAW);
-		glBindBufferRange(GL_UNIFORM_BUFFER, ::Constants::PERFRAME_UNIFORM_INDEX, frameDataUBO, 0, sizeof(FrameData));
+		glBindBufferRange(GL_UNIFORM_BUFFER, perframeUniformIndex, frameDataUBO, 0, sizeof(FrameData));
 
 		// Some other book-keeping
 		frameData.numLights = 0;

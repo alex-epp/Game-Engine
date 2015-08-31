@@ -1,3 +1,5 @@
+#if 0
+
 #include "Constants.h" 
 
 // General
@@ -41,3 +43,5 @@ const string Constants::SHININESS_NAME = "material.shininess";
 // Files
 const string Constants::BASIC_SHADER = "basic";
 const string Constants::SHADER_PATH = "../data/shaders/";
+
+#endif
