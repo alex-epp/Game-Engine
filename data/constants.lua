@@ -23,7 +23,7 @@ model_matrix_location = 0
 perframe_uniform_name = "FrameData"
 perframe_uniform_index = 0
 
--- Lighting
+-- Lighting. Because of stupid glsl stuff, this value isn't actually configurable. I left it here in case someone figures out how to fix this
 max_lights = 8
 
 -- Textures

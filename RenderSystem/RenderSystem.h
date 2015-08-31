@@ -28,6 +28,8 @@ using glm::vec3;
 
 namespace renderSystem
 {
+	const int MAX_LIGHTS = 8; // TODO - make this value actually configurable
+
 	struct Light // Designed to be passed into shaders (std140)
 	{
 		vec4 ambient, diffuse, specular;
@@ -63,7 +65,7 @@ namespace renderSystem
 		float time;
 
 		int numLights; vec2 filler;
-		vector<Light> lights;
+		Light lights[MAX_LIGHTS];
 	};
 
 	class RenderSystem : public System<pComponentContainer(LightComponent),

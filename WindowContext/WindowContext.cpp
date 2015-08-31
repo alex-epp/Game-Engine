@@ -52,8 +52,6 @@ namespace windowContext
 		glfwSetWindowCloseCallback(window, closeCallback);
 		glfwSetWindowSizeCallback(window, sizeCallback);
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
-		ChangeManager::get().recieveMsg<ResizeWindowMessage>(WINDOW_WIDTH, WINDOW_HEIGHT);
 	}
 
 	bool WindowContext::shouldQuit()

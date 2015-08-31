@@ -20,23 +20,15 @@ namespace renderSystem
 {
 	RenderSystem::RenderSystem()
 	{
-		FOV = Constants::get().getNum<float>("FOV");
-		nearPlane = Constants::get().getNum<float>("near_plane");
-		farPlane = Constants::get().getNum<float>("far_plane");
-		windowWidth = Constants::get().getNum<int>("window_width");
-		windowHeight = Constants::get().getNum<int>("window_height");
-		perframeUniformName = Constants::get().getString("perframe_uniform_name");
-		perframeUniformIndex = Constants::get().getNum<int>("perframe_uniform_index");
 	}
 	void RenderSystem::act()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		map<EntityType, LightComponent*>* lights = std::get<pComponentContainer(LightComponent)>(components);
-		frameData.lights.clear();
+		frameData.numLights = 0;
 		for (auto it = lights->begin(); it != lights->end(); ++it)
-			frameData.lights.push_back(it->second->light);
-		frameData.numLights = frameData.lights.size();
+			frameData.lights[frameData.numLights++] = it->second->light;
 
 		auto cameras = std::get<pComponentContainer(CameraComponent)>(components);
 		auto cameraSpot = cameras->begin();
@@ -74,7 +66,15 @@ namespace renderSystem
 
 	void RenderSystem::init()
 	{
-		ChangeManager::get().add(this, { Message::MsgType::RESIZE_WINDOW, Message::MsgType::UPDATE_RENDERABLE });
+		FOV = Constants::get().getNum<float>("FOV");
+		nearPlane = Constants::get().getNum<float>("near_plane");
+		farPlane = Constants::get().getNum<float>("far_plane");
+		windowWidth = Constants::get().getNum<int>("window_width");
+		windowHeight = Constants::get().getNum<int>("window_height");
+		perframeUniformName = Constants::get().getString("perframe_uniform_name");
+		perframeUniformIndex = Constants::get().getNum<int>("perframe_uniform_index");
+		
+		ChangeManager::get().add(this, { Message::MsgType::RESIZE_WINDOW });
 		LOG("Creating render system");
 
 		// Initialize GLEW
