@@ -50,23 +50,23 @@ void Material::addAttrib(float val, string name)
 
 void Material::addToProgram(ShaderProgram& program)
 {
-	static const auto& textureFlags = Constants::get().getNumArray("texture_flags");
-	static const auto& textureNames = Constants::get().getNumArray("texture_names");
-	static const auto& colourNames = Constants::get().getNumArray("colour_names");
+	static const auto& textureFlags = Constants::get().getStringArray("texture_flags");
+	static const auto& textureNames = Constants::get().getStringArray("texture_names");
+	static const auto& colourNames = Constants::get().getStringArray("colour_names");
 
 
 	for (int i = 0; i < static_cast<int>(TextureType::NumTypes); i++)
 	{
-		program.setUniform(static_cast<int>(textureFlags[i]), textures[i].used);
+		program.setUniform(textureFlags[i], textures[i].used);
 		if (textures[i].used)
-		 	program.setUniform(static_cast<int>(textureNames[i]), i);
+		 	program.setUniform(textureNames[i], i);
 	}
 	
 
 	if (!colours[static_cast<int>(ColourType::Ambient)].used) colours[static_cast<int>(ColourType::Ambient)].val = vec3(0); // Default the ambient colour to black
 
 	for (int i = 0; i < static_cast<int>(ColourType::NumTypes); i++)
-			program.setUniform(static_cast<int>(colourNames[i]), colours[i].val); // Defaults to white if the colour is not used
+			program.setUniform(colourNames[i], colours[i].val); // Defaults to white if the colour is not used
 
 	for (auto &attrib : attribs)
 	{

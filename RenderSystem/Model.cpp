@@ -150,7 +150,7 @@ void Model::render()
 	{
 		//meshes[i].getProgram().setUniform(Constants::VIEW_MATRIX_LOCATION, viewMatrix);
 		//meshes[i].getProgram().setUniform(Constants::PROJECTION_MATRIX_LOCATION, projectionMatrix);
-		meshes[i].getProgram().setUniform(Constants::get().getString("model_matrix_location"), getModelMatrix());
+		meshes[i].getProgram().setUniform(Constants::get().getNum<int>("model_matrix_location"), getModelMatrix());
 		meshes[i].render();
 	}
 }

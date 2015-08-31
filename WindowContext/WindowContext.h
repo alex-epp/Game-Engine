@@ -21,11 +21,6 @@ namespace windowContext
 		void swapBuffers();
 		void act();
 
-		// Constants
-		static const int WINDOW_WIDTH;
-		static const int WINDOW_HEIGHT;
-		static const char* WINDOW_TITLE;
-
 	private:
 
 		// Input callbacks

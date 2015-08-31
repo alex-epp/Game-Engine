@@ -24,17 +24,18 @@ namespace renderSystem
 		farPlane = Constants::get().getNum<float>("far_plane");
 		windowWidth = Constants::get().getNum<int>("window_width");
 		windowHeight = Constants::get().getNum<int>("window_height");
-		perframeUniformName = Constants::get().getString("frame_uniform_name");
-		perframeUniformIndex = Constants::get().getNum<int>("frame_uniform_index");
+		perframeUniformName = Constants::get().getString("perframe_uniform_name");
+		perframeUniformIndex = Constants::get().getNum<int>("perframe_uniform_index");
 	}
 	void RenderSystem::act()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		map<EntityType, LightComponent*>* lights = std::get<pComponentContainer(LightComponent)>(components);
-		frameData.numLights = 0;
+		frameData.lights.clear();
 		for (auto it = lights->begin(); it != lights->end(); ++it)
-			frameData.lights[frameData.numLights++] = it->second->light;
+			frameData.lights.push_back(it->second->light);
+		frameData.numLights = frameData.lights.size();
 
 		frameData.projection = glm::perspective(FOV, windowWidth / static_cast<float>(windowHeight), nearPlane, farPlane);
 		frameData.view = glm::lookAt(vec3(0, 600, -800),

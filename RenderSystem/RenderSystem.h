@@ -59,7 +59,7 @@ namespace renderSystem
 		float time;
 
 		int numLights; vec2 filler;
-		Light lights[::Constants::MAX_LIGHTS];
+		vector<Light> lights;
 	};
 
 	class RenderSystem : public System<pComponentContainer(LightComponent), pComponentContainer(ModelComponent)>

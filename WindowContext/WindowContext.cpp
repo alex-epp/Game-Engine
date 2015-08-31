@@ -1,13 +1,11 @@
 #include "WindowContext.h"
 #include "../Core/Logger.h"
 #include <GLFW/glfw3.h>
+#include "../Core/Constants.h"
+using core::Constants;
 
 namespace windowContext
 {
-	const int WindowContext::WINDOW_WIDTH = 640;
-	const int WindowContext::WINDOW_HEIGHT = 480;
-	const char* WindowContext::WINDOW_TITLE = "Window Title";
-
 	WindowContext::WindowContext()
 	{
 	}
@@ -30,7 +28,7 @@ namespace windowContext
 		glfwWindowHint(GLFW_SAMPLES, 8);
 
 		// Create a window
-		window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, nullptr, nullptr);
+		window = glfwCreateWindow(Constants::get().getNum<int>("window_width"), Constants::get().getNum<int>("window_height"), Constants::get().getString("window_title").c_str(), nullptr, nullptr);
 		if (!window)
 		{
 			LOG_ERR("Could not create GLFW window");
