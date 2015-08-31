@@ -28,5 +28,6 @@ namespace playerControllerSystem
 	private:
 		int x, y;
 		int xLast, yLast;
+		bool playerForward, playerBackward, playerLeft, playerRight;
 	};
 }

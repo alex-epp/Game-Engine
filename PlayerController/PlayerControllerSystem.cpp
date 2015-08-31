@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtx/rotate_vector.hpp>
+#include <GLFW/glfw3.h>
 
 namespace playerControllerSystem
 {
@@ -18,6 +19,8 @@ namespace playerControllerSystem
 
 		x = 0;
 		y = 0;
+
+		playerForward = playerBackward = playerLeft = playerRight = false;
 	}
 
 	void PlayerControllerSystem::recieveMsg(Message* msg)
@@ -34,7 +37,21 @@ namespace playerControllerSystem
 		case Message::MsgType::KEY_CHANGE:
 		{
 			auto m = dynamic_cast<KeyChangeMessage*>(msg);
-			cout << m->key << endl;
+			switch (m->key)
+			{
+			case GLFW_KEY_W:
+				playerForward = m->down;
+				break;
+			case GLFW_KEY_S:
+				playerBackward = m->down;
+				break;
+			case GLFW_KEY_A:
+				playerLeft = m->down;
+				break;
+			case GLFW_KEY_D:
+				playerRight = m->down;
+				break;
+			}
 		}
 		}
 	}
@@ -47,9 +64,16 @@ namespace playerControllerSystem
 		{
 			auto entity = it->first;
 			auto transform = transforms->at(entity);
-			transform->rotation = glm::rotate(transform->rotation, (x - xLast) * 0.0001f, glm::vec3(0, 1, 0));
-			transform->rotation = glm::rotate(transform->rotation, (y - yLast) * 0.0001f, glm::vec3(1, 0, 0) * transform->rotation );
-			transform->position -= glm::vec3(0, 0, 1) * transform->rotation;
+			transform->rotation = glm::rotate(transform->rotation, (x - xLast) * 0.001f, glm::vec3(0, 1, 0));
+			transform->rotation = glm::rotate(transform->rotation, (y - yLast) * 0.001f, glm::vec3(1, 0, 0) * transform->rotation );
+			if (playerForward)
+				transform->position -= (glm::vec3(0, 0, 1) * transform->rotation) * 3.f;
+			if (playerBackward)
+				transform->position += (glm::vec3(0, 0, 1) * transform->rotation) * 3.f;
+			if (playerLeft)
+				transform->position -= (glm::vec3(1, 0, 0) * transform->rotation) * 3.f;
+			if (playerRight)
+				transform->position += (glm::vec3(1, 0, 0) * transform->rotation) * 3.f;
 			//transform->direction.y = 1;
 		}
 
