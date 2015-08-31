@@ -18,20 +18,25 @@ using namespace core;
 
 namespace renderSystem
 {
-	const char* RenderSystem::FRAME_UNIFORM_NAME = "FrameData";
-	int RenderSystem::FRAME_UNIFORM_INDEX;
-
 	RenderSystem::RenderSystem()
 	{
+		FOV = Constants::get().getNum<float>("FOV");
+		nearPlane = Constants::get().getNum<float>("near_plane");
+		farPlane = Constants::get().getNum<float>("far_plane");
+		windowWidth = Constants::get().getNum<int>("window_width");
+		windowHeight = Constants::get().getNum<int>("window_height");
+		perframeUniformName = Constants::get().getString("perframe_uniform_name");
+		perframeUniformIndex = Constants::get().getNum<int>("perframe_uniform_index");
 	}
 	void RenderSystem::act()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		map<EntityType, LightComponent*>* lights = std::get<pComponentContainer(LightComponent)>(components);
-		frameData.numLights = 0;
+		frameData.lights.clear();
 		for (auto it = lights->begin(); it != lights->end(); ++it)
-			frameData.lights[frameData.numLights++] = it->second->light;
+			frameData.lights.push_back(it->second->light);
+		frameData.numLights = frameData.lights.size();
 
 		auto cameras = std::get<pComponentContainer(CameraComponent)>(components);
 		auto cameraSpot = cameras->begin();
@@ -48,8 +53,7 @@ namespace renderSystem
 		frameData.projection = glm::perspective(camera->FOV, aspectRatio, camera->nearPlane, camera->farPlane);
 		frameData.view = /*glm::lookAt(cameraPos->position, cameraPos->position + cameraPos->direction, camera->up);*/ viewMatrix;
 
-		glBindBuffer(GL_UNIFORM_BUFFER, frameDataUBO);
-		glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(FrameData), &frameData);
+		updateFrameData();
 
 		map<EntityType, ModelComponent*>* models = std::get<pComponentContainer(ModelComponent)>(components);
 		for (auto it = models->begin(); it != models->end(); ++it)
@@ -60,15 +64,18 @@ namespace renderSystem
 
 	ModelComponent* RenderSystem::createModel(string path, string filename)
 	{
+		LOG("Loading model from: ", filename);
 		auto mc = new ModelComponent();
 		mc->model.loadFromFile(path, filename);
-		mc->model.attachUniformBlock(Constants::PERFRAME_UNIFORM_NAME, Constants::PERFRAME_UNIFORM_INDEX);
+		mc->model.attachUniformBlock(Constants::get().getString("perframe_uniform_name"), Constants::get().getNum<int>("perframe_uniform_index"));
+
 		return mc;
 	}
 
 	void RenderSystem::init()
 	{
-		ChangeManager::get().add(this, { Message::MsgType::RESIZE_WINDOW });
+		ChangeManager::get().add(this, { Message::MsgType::RESIZE_WINDOW, Message::MsgType::UPDATE_RENDERABLE });
+		LOG("Creating render system");
 
 		// Initialize GLEW
 		glewExperimental = GL_TRUE;
@@ -92,8 +99,10 @@ namespace renderSystem
 		glEnable(GL_DEPTH_TEST);
 		glCullFace(GL_BACK);
 
-		aspectRatio = .5f;
-		glViewport(0, 0, 1, 1);
+		aspectRatio = windowWidth / windowHeight;//.5f;
+		//glViewport(0, 0, 1, 1);
+		
+		glViewport(0, 0, windowWidth, windowHeight);
 		glClearColor(0.f, 0.f, 0.f, 1.f);
 		//glClearColor(1, 1, 1, 1);
 
@@ -101,10 +110,16 @@ namespace renderSystem
 		glGenBuffers(1, &frameDataUBO);
 		glBindBuffer(GL_UNIFORM_BUFFER, frameDataUBO);
 		glBufferData(GL_UNIFORM_BUFFER, sizeof(FrameData), NULL, GL_STREAM_DRAW);
-		glBindBufferRange(GL_UNIFORM_BUFFER, Constants::PERFRAME_UNIFORM_INDEX, frameDataUBO, 0, sizeof(FrameData));
+		glBindBufferRange(GL_UNIFORM_BUFFER, perframeUniformIndex, frameDataUBO, 0, sizeof(FrameData));
 
 		// Some other book-keeping
 		frameData.numLights = 0;
+	}
+
+	void RenderSystem::updateFrameData()
+	{
+		glBindBuffer(GL_UNIFORM_BUFFER, frameDataUBO);
+		glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(FrameData), &frameData);
 	}
 
 	

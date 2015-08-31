@@ -63,7 +63,7 @@ namespace renderSystem
 		float time;
 
 		int numLights; vec2 filler;
-		Light lights[Constants::MAX_LIGHTS];
+		vector<Light> lights;
 	};
 
 	class RenderSystem : public System<pComponentContainer(LightComponent),
@@ -81,7 +81,7 @@ namespace renderSystem
 
 		static LightComponent* createLight(string filename)
 		{
-			cout << "Loading light from: " << filename << endl;
+			LOG("Loading light from: ", filename);
 
 			ifstream file(filename.c_str());
 			if (!file)
@@ -105,15 +105,17 @@ namespace renderSystem
 		
 		void init();
 
-		static const float FOV;
-		static const float NEAR_PLANE;
-		static const float FAR_PLANE;
-		static const int WINDOW_WIDTH;
-		static const int WINDOW_HEIGHT;
-		static const char* FRAME_UNIFORM_NAME;
-		static int FRAME_UNIFORM_INDEX;
+		float FOV;
+		float nearPlane;
+		float farPlane;
+		int windowWidth;
+		int windowHeight;
+		string perframeUniformName;
+		int perframeUniformIndex;
 
 	private:
+		void updateFrameData();
+
 		GLuint frameDataUBO;
 		FrameData frameData;
 		float aspectRatio;

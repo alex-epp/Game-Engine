@@ -1,5 +1,6 @@
 #include "VAO.h"
-
+#include "../Core/Constants.h"
+using core::Constants;
 
 
 VAO::VAO()
@@ -71,14 +72,14 @@ void VAO::attachBuffers(const vector<Vertex>& vertices, const vector<unsigned in
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), &vertices[0], GL_STATIC_DRAW);
 
 	// Set up vertex attributes
-	glEnableVertexAttribArray(Constants::VERTEX_LOCATION);
-	glVertexAttribPointer(Constants::VERTEX_LOCATION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
-	glEnableVertexAttribArray(Constants::TEXCOORD_LOCATION);
-	glVertexAttribPointer(Constants::TEXCOORD_LOCATION, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texcoord));
-	glEnableVertexAttribArray(Constants::NORMAL_LOCATION);
-	glVertexAttribPointer(Constants::NORMAL_LOCATION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, normal));
-	glEnableVertexAttribArray(Constants::TANGENT_LOCATION);
-	glVertexAttribPointer(Constants::TANGENT_LOCATION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, tangent));
+	glEnableVertexAttribArray(Constants::get().getNum<int>("vertex_location"));
+	glVertexAttribPointer(Constants::get().getNum<int>("vertex_location"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
+	glEnableVertexAttribArray(Constants::get().getNum<int>("texcoord_location"));
+	glVertexAttribPointer(Constants::get().getNum<int>("texcoord_location"), 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texcoord));
+	glEnableVertexAttribArray(Constants::get().getNum<int>("normal_location"));
+	glVertexAttribPointer(Constants::get().getNum<int>("normal_location"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, normal));
+	glEnableVertexAttribArray(Constants::get().getNum<int>("tangent_location"));
+	glVertexAttribPointer(Constants::get().getNum<int>("tangent_location"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, tangent));
 
 	// Create and bind index buffer
 	GLuint ibuffer;

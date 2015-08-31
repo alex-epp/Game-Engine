@@ -123,6 +123,7 @@ public:
 	{
 		// Cleanup the objects in memory
 		ComponentManager::get().cleanup();
+		core::Constants::get().cleanup();
 	}
 
 	virtual void recieveMsg(Message* msg)

@@ -20,14 +20,9 @@ namespace windowContext
 		void cleanup();
 		void swapBuffers();
 		void act();
-
+		
 		virtual void recieveMsg(Message*);
-
-		// Constants
-		static const int WINDOW_WIDTH;
-		static const int WINDOW_HEIGHT;
-		static const char* WINDOW_TITLE;
-
+		
 	private:
 
 		// Input callbacks

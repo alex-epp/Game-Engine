@@ -22,4 +22,9 @@ namespace core
 		if (outStream)
 			closeStream();
 	}
+
+	void ConsoleLogPolicy::write(const string& message)
+	{
+		cerr << message << endl;
+	}
 }

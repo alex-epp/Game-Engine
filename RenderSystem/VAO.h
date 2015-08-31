@@ -3,7 +3,6 @@
 #include <vector>
 #include <iostream>
 #include "Vertex.h"
-#include "Constants.h"
 #include "../Core/Logger.h"
 
 using namespace std;

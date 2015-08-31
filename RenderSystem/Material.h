@@ -6,7 +6,6 @@
 #include <string>
 #include "ShaderProgram.h"
 #include "../Core/Logger.h"
-#include "Constants.h"
 
 using namespace std;
 using glm::vec3;
@@ -42,7 +41,22 @@ public:
 		float val;
 		string name;
 	};
+	enum class TextureType // Texture indices in the shaders
+	{
+		Diffuse = 0,
+		Specular,
+		Shininess,
+		Normals,
+		NumTypes
+	};
 
+	enum class ColourType
+	{
+		Ambient = 0,
+		Diffuse,
+		Specular,
+		NumTypes
+	};
 	Material();
 	~Material();
 

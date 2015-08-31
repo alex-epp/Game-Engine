@@ -30,12 +30,21 @@ namespace core
 		FileLogPolicy() : outStream(new ofstream) {}
 		~FileLogPolicy();
 
-		void openStream(const string& name);
-		void closeStream();
-		void write(const string& message);
+		void openStream(const string& name) override;
+		void closeStream() override;
+		void write(const string& message) override;
 
 	private:
 		unique_ptr<ofstream> outStream;
+	};
+
+	class ConsoleLogPolicy : public ILogPolicy
+	{
+	public:
+		
+		void openStream(const string& name) override {}
+		void closeStream() override {}
+		void write(const string& message) override;
 	};
 
 	enum class SeverityType { Debug = 1, Error, Warning }; // ERROR is defined already, so this has can't be uppercase
@@ -64,6 +73,7 @@ namespace core
 		template<typename First, typename...Args>
 		void print_impl(First first, Args...args);
 	};
+
 
 	template<typename LogPolicy>
 	inline Logger<LogPolicy>::Logger(string name)
@@ -115,6 +125,7 @@ namespace core
 	void Logger<LogPolicy>::print(Args ...args)
 	{
 		writeMutex.lock();
+		logStream.str("");
 		switch (severity)
 		{
 		case SeverityType::Debug:
@@ -147,7 +158,7 @@ namespace core
 		print_impl(args...);
 	}
 
-	static Logger<FileLogPolicy> logInst("execution.log");
+	static Logger<ConsoleLogPolicy> logInst("execution.log");
 
 #ifdef LOGGING_LEVEL_1
 
