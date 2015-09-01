@@ -47,7 +47,10 @@ artifacts/
 *_i.h
 *.ilk
 *.meta
-# *.obj
+# .obj can represent both compiler-generated files and models. Only ignore the former
+*.obj
+!*sponza*.obj
+
 *.pch
 *.pdb
 *.pgc
@@ -213,3 +216,7 @@ _Pvt_Extensions/
 ModelManifest.xml
 
 *.lastbuildstate
+
+*.log
+*.tlog
+*.exe
