@@ -47,10 +47,7 @@ artifacts/
 *_i.h
 *.ilk
 *.meta
-# .obj can represent both compiler-generated files and models. Only ignore the former
 *.obj
-!*sponza*.obj
-
 *.pch
 *.pdb
 *.pgc
@@ -228,3 +225,6 @@ ModelManifest.xml
 *PlayerController.lib
 *RenderSystem.lib
 *WindowContext.lib
+
+!data/*
+!data/*.*
