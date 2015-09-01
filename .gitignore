@@ -226,5 +226,4 @@ ModelManifest.xml
 *RenderSystem.lib
 *WindowContext.lib
 
-!data/*
-!data/*.*
+!data/**
