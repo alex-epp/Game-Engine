@@ -26,10 +26,10 @@ void Mesh::compileShaders(string filepath, string shader)
 	{
 		LOG_ERR("Could not load ", shader, ".frag: ", program.log());
 	}
-	if (!program.link())
+	/*if (!program.link())
 	{
 		LOG_ERR("Could not link ", shader, " ", program.log());
-	}
+	}*/
 }
 
 

@@ -65,7 +65,7 @@ bool ShaderProgram::compileFromString(const string & source, ShaderType type)
 	glCompileShader(shader);
 
 	// Verify compilation
-	GLint result;
+	/*GLint result;
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &result);
 	if (result == GL_FALSE)
 	{
@@ -84,7 +84,7 @@ bool ShaderProgram::compileFromString(const string & source, ShaderType type)
 			free(log);
 		}
 		return false;
-	}
+	}*/
 	shaders.emplace_back(shader);
 	return true;
 }
@@ -110,7 +110,7 @@ bool ShaderProgram::link()
 	{
 		glAttachShader(handle, shader);
 	}
-
+	
 	// Link the program
 	glLinkProgram(handle);
 
