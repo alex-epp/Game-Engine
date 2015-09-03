@@ -116,6 +116,8 @@ public:
 			wc.swapBuffers();
 			wc.act();
 			ChangeManager::get().distrubuteMsgs();
+
+			FPSCounter::update();
 		}
 	}
 
