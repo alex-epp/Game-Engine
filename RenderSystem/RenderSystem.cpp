@@ -104,6 +104,7 @@ namespace renderSystem
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_DEPTH_TEST);
 		glCullFace(GL_BACK);
+		glEnable(GL_CULL_FACE);
 
 		aspectRatio = windowWidth / windowHeight;//.5f;
 		//glViewport(0, 0, 1, 1);
