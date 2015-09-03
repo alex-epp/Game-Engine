@@ -102,7 +102,7 @@ namespace core
 			else if (lua_isstring(L, -1))
 				stringArrayVals[name].push_back(lua_tostring(L, -1));
 			else if (lua_isboolean(L, -1))
-				boolArrayVals[name].push_back(lua_toboolean(L, -1));
+				boolArrayVals[name].push_back(static_cast<bool>(lua_toboolean(L, -1)));
 			else if (lua_istable(L, -1))
 				LOG_WARN("Constants::loadTable cannot load multidimensional tables");
 

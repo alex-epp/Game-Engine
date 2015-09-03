@@ -52,7 +52,8 @@ namespace core
 			else
 			{
 				LOG_ERR("Key ", name, " is not in stringVals");
-				return "";
+				static string blank = "";
+				return blank;
 			}
 		}
 
@@ -96,7 +97,8 @@ namespace core
 			else
 			{
 				LOG_ERR("Key ", name, " is not in stringArrayVals");
-				return vector<string>();
+				static vector<string> v;
+				return v;
 			}
 		}
 		

@@ -106,7 +106,7 @@ namespace renderSystem
 		glCullFace(GL_BACK);
 		glEnable(GL_CULL_FACE);
 
-		aspectRatio = windowWidth / windowHeight;//.5f;
+		aspectRatio = windowWidth / static_cast<float>(windowHeight);
 		//glViewport(0, 0, 1, 1);
 		
 		glViewport(0, 0, windowWidth, windowHeight);
