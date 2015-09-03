@@ -177,6 +177,7 @@
   <ItemGroup>
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Core.h" />
+    <ClInclude Include="FPSCounter.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="System.h" />
@@ -186,6 +187,7 @@
   <ItemGroup>
     <ClCompile Include="Constants.cpp" />
     <ClCompile Include="Core.cpp" />
+    <ClCompile Include="FPSCounter.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Message.cpp" />
   </ItemGroup>
