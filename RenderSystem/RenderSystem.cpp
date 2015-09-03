@@ -25,10 +25,16 @@ namespace renderSystem
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		// Get uniform buffer
+		glBindBuffer(GL_UNIFORM_BUFFER, frameDataUBO);
+		auto data = reinterpret_cast<FrameData*>(glMapBufferRange(GL_UNIFORM_BUFFER, 0, sizeof(FrameData), GL_MAP_WRITE_BIT));
+
+		// Update uniform data
+
 		map<EntityType, LightComponent*>* lights = std::get<pComponentContainer(LightComponent)>(components);
-		frameData.numLights = 0;
+		data->numLights = 0;
 		for (auto it = lights->begin(); it != lights->end(); ++it)
-			frameData.lights[frameData.numLights++] = it->second->light;
+			data->lights[data->numLights++] = it->second->light;
 
 		auto cameras = std::get<pComponentContainer(CameraComponent)>(components);
 		auto cameraSpot = cameras->begin();
@@ -36,16 +42,16 @@ namespace renderSystem
 		auto cameraEntity = cameraSpot->first;
 		auto cameraPos = std::get<pComponentContainer(TransformComponent)>(components)->at(cameraEntity);
 
-		/* Quat to Mat4 */
+		// Quat to Mat4
 		glm::mat4 identityMat = glm::mat4(1.0f);
 		glm::mat4 rotMatrix = glm::mat4_cast(cameraPos->rotation);   //rotation is glm::quat
 		glm::mat4 transMatrix = glm::translate(identityMat, cameraPos->position);
 		glm::mat4 viewMatrix = rotMatrix * glm::inverse(transMatrix);
 
-		frameData.projection = glm::perspective(camera->FOV, aspectRatio, camera->nearPlane, camera->farPlane);
-		frameData.view = /*glm::lookAt(cameraPos->position, cameraPos->position + cameraPos->direction, camera->up);*/ viewMatrix;
+		data->projection = glm::perspective(camera->FOV, aspectRatio, camera->nearPlane, camera->farPlane);
+		data->view = /*glm::lookAt(cameraPos->position, cameraPos->position + cameraPos->direction, camera->up);*/ viewMatrix;
 
-		updateFrameData();
+		glUnmapBuffer(GL_UNIFORM_BUFFER); // Unmap uniform buffer
 
 		map<EntityType, ModelComponent*>* models = std::get<pComponentContainer(ModelComponent)>(components);
 		for (auto it = models->begin(); it != models->end(); ++it)
@@ -111,17 +117,7 @@ namespace renderSystem
 		glBindBuffer(GL_UNIFORM_BUFFER, frameDataUBO);
 		glBufferData(GL_UNIFORM_BUFFER, sizeof(FrameData), NULL, GL_STREAM_DRAW);
 		glBindBufferRange(GL_UNIFORM_BUFFER, perframeUniformIndex, frameDataUBO, 0, sizeof(FrameData));
-
-		// Some other book-keeping
-		frameData.numLights = 0;
 	}
-
-	void RenderSystem::updateFrameData()
-	{
-		glBindBuffer(GL_UNIFORM_BUFFER, frameDataUBO);
-		glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(FrameData), &frameData);
-	}
-
 	
 	void RenderSystem::recieveMsg(Message* msg)
 	{

@@ -116,10 +116,8 @@ namespace renderSystem
 		int perframeUniformIndex;
 
 	private:
-		void updateFrameData();
 
 		GLuint frameDataUBO;
-		FrameData frameData;
 		float aspectRatio;
 	};
 }
