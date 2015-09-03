@@ -15,7 +15,7 @@ Model::~Model()
 
 bool Model::loadFromFile(string filepath, string filename)
 {
-	
+	auto startTime = time(0);
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(filepath + filename,
 		aiProcess_Triangulate
@@ -32,7 +32,8 @@ bool Model::loadFromFile(string filepath, string filename)
 		LOG_ERR("Could not load model ", filename);
 		return false;
 	}
-
+	cout << "Assimp: " << time(0) - startTime << endl;
+	startTime = time(0);
 	// For each mesh
 	vector<int> matIndices(scene->mNumMeshes);
 	for (unsigned int i = 0; i < scene->mNumMeshes; i++)
@@ -42,7 +43,7 @@ bool Model::loadFromFile(string filepath, string filename)
 
 		// Create shaders
 		meshes[i].compileShaders(Constants::get().getString("shader_path"), Constants::get().getString("basic_shader"));
-		meshes[i].getProgram().use();
+		//meshes[i].getProgram().use();
 
 		// Save material index for later
 		matIndices[i] = mesh->mMaterialIndex;
@@ -86,6 +87,23 @@ bool Model::loadFromFile(string filepath, string filename)
 
 		meshes[i].getVAO().attachBuffers(vertices, indices);
 	} // End for each mesh
+
+	cout << "Vertices: " << time(0) - startTime << endl;
+	startTime = time(0);
+
+	cout << "Delay " << time(0) - startTime << endl;
+	startTime = time(0);
+
+	// Now link the shaders
+	for (auto &mesh : meshes)
+	{
+		if (!mesh.program.link())
+			LOG_ERR("Could not link ", mesh.program.log());
+	}
+
+	cout << "Linking shaders: " << time(0) - startTime << endl;
+	startTime = time(0);
+	
 
 	// Load materials
 	for (unsigned int i = 0; i < scene->mNumMaterials; i++)
@@ -132,6 +150,8 @@ bool Model::loadFromFile(string filepath, string filename)
 			mesh.getMaterial().addToProgram(mesh.getProgram());
 		}
 	}
+	cout << "Materials: " << time(0) - startTime << endl;
+	startTime = time(0);
 
 	return true;
 }
