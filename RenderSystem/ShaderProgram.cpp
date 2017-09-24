@@ -102,13 +102,13 @@ bool ShaderProgram::link()
 		return false;
 	}
 
-	sort(shaders.begin(), shaders.end());
+	/*sort(shaders.begin(), shaders.end());
 	auto programIt = programMap.find(shaders);
 	if (programIt != programMap.end())
 	{
 		handle = programIt->second;
 		return true;
-	}
+	}*/
 
 	// Create the shader program
 	handle = glCreateProgram();
