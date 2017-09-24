@@ -1,10 +1,12 @@
 #pragma once
 
+#include <algorithm>
 #include <assimp\Importer.hpp>
 #include <assimp\scene.h>
 #include <assimp\postprocess.h>
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
+#include <numeric>
 #include <vector>
 #include "Mesh.h"
 
@@ -37,7 +39,8 @@ public:
 private:
 	mat4 modelMatrix, translationMatrix, rotationMatrix, scaleMatrix;
 	mat4 VPlast;
-	vector<Mesh> meshes;
+	vector<shared_ptr<Mesh>> meshes;
+	vector<shared_ptr<Material>> materials;
 
 	bool modelMatUpdated;
 };

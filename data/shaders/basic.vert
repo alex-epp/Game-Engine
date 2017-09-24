@@ -68,5 +68,4 @@ void main()
 		
 		LightDirection_tangentspace[i] = TBN * LightDirection_cameraspace[i];
 	}
-	
 }

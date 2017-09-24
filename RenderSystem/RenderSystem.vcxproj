@@ -164,6 +164,7 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="utility.h" />
     <ClInclude Include="VAO.h" />

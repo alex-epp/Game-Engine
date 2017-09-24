@@ -1,4 +1,5 @@
 #include "Material.h"
+#include <SFML/Graphics.hpp>
 #include "../Core/Constants.h"
 using core::Constants;
 
@@ -37,7 +38,23 @@ void Material::addAttrib(float val, string name)
 	attribs.emplace_back(val, name);
 }
 
-void Material::addToProgram(ShaderProgram& program)
+void Material::compileShaders(string filepath, string shader)
+{
+	if (!program.compileFromFile(filepath + shader + ".vert", ShaderType::Vertex))
+	{
+		LOG_ERR("Could not load ", shader, ".vert: ", program.log());
+	}
+	if (!program.compileFromFile(filepath + shader + ".frag", ShaderType::Fragment))
+	{
+		LOG_ERR("Could not load ", shader, ".frag: ", program.log());
+	}
+	/*if (!program.link())
+	{
+	LOG_ERR("Could not link ", shader, " ", program.log());
+	}*/
+}
+
+void Material::addToProgram()
 {
 	static const auto& textureFlags = Constants::get().getStringArray("texture_flags");
 	static const auto& textureNames = Constants::get().getStringArray("texture_names");
@@ -73,3 +90,36 @@ void Material::activateTextures()
 		}
 	}
 }
+
+unsigned int TextureMgr::load(const string filename)
+{
+	if (textures.find(filename) == textures.end()) // If the texture is not in the map
+	{
+		sf::Image img;
+		if (!img.loadFromFile(filename))
+		{
+			return 0;
+		}
+		GLuint handle;
+		glGenTextures(1, &handle);
+		glBindTexture(GL_TEXTURE_2D, handle);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+			img.getSize().x, img.getSize().y,
+			0,
+			GL_RGBA, GL_UNSIGNED_BYTE, img.getPixelsPtr());
+		textures[filename] = handle;
+
+		// Initialize it with some typical params
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+
+	return textures[filename];
+}
+
+map<string, GLuint> TextureMgr::textures;

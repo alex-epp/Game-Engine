@@ -63,15 +63,26 @@ public:
 	~Material();
 
 	bool addTexture(const string& filename, TextureType type);
-	bool finishTextureLoading();
 	void addColour(vec3 val, ColourType type);
 	void addAttrib(float val, string name);
 
-	void addToProgram(ShaderProgram& program);
+	void addToProgram();
 	void activateTextures();
+
+	const ShaderProgram& getProgram() const { return program; }
+	ShaderProgram& getProgram() { return program; }
+
+	GLuint getAttribLocation(string name)
+	{
+		return glGetAttribLocation(program.getHandle(), name.c_str());
+	}
+
+	void compileShaders(string filepath, string shader);
 
 private:
 	Texture textures[static_cast<int>(TextureType::NumTypes)];
 	Colour colours[static_cast<int>(ColourType::NumTypes)];
 	vector<Attrib> attribs;
+
+	ShaderProgram program;
 };
