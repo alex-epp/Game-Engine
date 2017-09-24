@@ -1,4 +1,5 @@
 #pragma once
+#include <future>
 #include <Windows.h>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -14,7 +15,7 @@ using glm::vec3;
 class TextureMgr
 {
 public:
-	static GLuint loadTexture(const string& filename);
+	static GLuint load(const string filename);
 private:
 	static map<string, GLuint> textures;
 };
@@ -27,6 +28,7 @@ public:
 	{
 		Texture() : used(false), handle(0) {}
 		GLuint handle;
+		unsigned int futureHandleRef;
 		bool used;
 	};
 	struct Colour
@@ -61,6 +63,7 @@ public:
 	~Material();
 
 	bool addTexture(const string& filename, TextureType type);
+	bool finishTextureLoading();
 	void addColour(vec3 val, ColourType type);
 	void addAttrib(float val, string name);
 

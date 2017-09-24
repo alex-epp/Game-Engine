@@ -42,7 +42,7 @@ out vec3 EyeDirection_tangentspace;
 
 void main()
 {
-	TexCoord = texcoord;
+	TexCoord = vec2(texcoord.x, 1-texcoord.y);
 	
 	gl_Position = projection * view * model * vec4(position, 1.0);
 	

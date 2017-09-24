@@ -96,7 +96,6 @@ void VAO::attachBuffers(const vector<Vertex>& vertices, const vector<unsigned in
 	glBindVertexArray(0);
 }
 
-
 void VAO::draw()
 {
 	glBindVertexArray(vao);

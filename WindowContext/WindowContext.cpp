@@ -29,10 +29,15 @@ namespace windowContext
 			return;
 		}
 		// Multisampling
-		glfwWindowHint(GLFW_SAMPLES, 8);
+		///glfwWindowHint(GLFW_SAMPLES, 8);
 
 		// Create a window
-		window = glfwCreateWindow(Constants::get().getNum<int>("window_width"), Constants::get().getNum<int>("window_height"), Constants::get().getString("window_title").c_str(), nullptr, nullptr);
+		window = glfwCreateWindow(
+			Constants::get().getNum<int>("window_width"),
+			Constants::get().getNum<int>("window_height"),
+			Constants::get().getString("window_title").c_str(),
+			Constants::get().getBool("fullscreen") ? glfwGetPrimaryMonitor() : nullptr,
+			nullptr);
 		if (!window)
 		{
 			LOG_ERR("Could not create GLFW window");

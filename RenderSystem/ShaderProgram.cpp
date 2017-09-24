@@ -20,7 +20,7 @@ bool ShaderProgram::compileFromFile(const string & filename, ShaderType type)
 	auto loc = shaderMap.find(filename);
 	if (loc != shaderMap.end())
 	{
-		shaders.push_back(loc->second);
+		shaders.emplace_back(loc->second);
 		return true;
 	}
 
@@ -39,7 +39,12 @@ bool ShaderProgram::compileFromFile(const string & filename, ShaderType type)
 
 		if (infile.eof()) break;
 	}
-	return compileFromString(source, type);
+	auto success = compileFromString(source, type);
+	if (success)
+	{
+		shaderMap[filename] = shaders.back();
+	}
+	return success;
 }
 bool ShaderProgram::compileFromString(const string & source, ShaderType type)
 {
@@ -96,7 +101,15 @@ bool ShaderProgram::link()
 		LOG_WARN("Program is already linked");
 		return false;
 	}
-	
+
+	sort(shaders.begin(), shaders.end());
+	auto programIt = programMap.find(shaders);
+	if (programIt != programMap.end())
+	{
+		handle = programIt->second;
+		return true;
+	}
+
 	// Create the shader program
 	handle = glCreateProgram();
 	if (handle == 0)
@@ -135,6 +148,7 @@ bool ShaderProgram::link()
 		return false;
 	}
 
+	programMap[shaders] = handle;
 	linked = true;
 
 	return true;
@@ -142,7 +156,11 @@ bool ShaderProgram::link()
 
 bool ShaderProgram::use()
 {
-	glUseProgram(handle);
+	if (curProgramHandle != handle)
+	{
+		glUseProgram(handle);
+		curProgramHandle = handle;
+	}
 	return true;
 }
 
@@ -195,3 +213,5 @@ void ShaderProgram::attachUniformBlock(string name, int index) const
 }
 
 map<string, GLuint> ShaderProgram::shaderMap;
+map<vector<GLuint>, GLuint> ShaderProgram::programMap;
+GLuint ShaderProgram::curProgramHandle = 0;

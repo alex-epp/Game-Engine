@@ -1,6 +1,7 @@
 // Based partly on https://www.packtpub.com/books/content/opengl-40-building-c-shader-program-class
 
 #pragma once
+#include <algorithm>
 #include <fstream>
 #include <gl/glew.h>
 #include <glm/glm.hpp>
@@ -74,6 +75,8 @@ protected:
 	vector<GLuint> shaders;
 
 	static map<string, GLuint> shaderMap;
+	static map<vector<GLuint>, GLuint> programMap;
+	static GLuint curProgramHandle;
 };
 
 template<typename... Ts>

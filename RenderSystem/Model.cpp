@@ -91,9 +91,6 @@ bool Model::loadFromFile(string filepath, string filename)
 	cout << "Vertices: " << time(0) - startTime << endl;
 	startTime = time(0);
 
-	cout << "Delay " << time(0) - startTime << endl;
-	startTime = time(0);
-
 	// Now link the shaders
 	for (auto &mesh : meshes)
 	{
@@ -166,11 +163,12 @@ void Model::attachUniformBlock(string name, int index) const
 
 void Model::render()
 {
+	static auto modelMatrixLoc = Constants::get().getNum<int>("model_matrix_location");
 	for (size_t i = 0; i < meshes.size(); i++)
 	{
 		//meshes[i].getProgram().setUniform(Constants::VIEW_MATRIX_LOCATION, viewMatrix);
 		//meshes[i].getProgram().setUniform(Constants::PROJECTION_MATRIX_LOCATION, projectionMatrix);
-		meshes[i].getProgram().setUniform(Constants::get().getNum<int>("model_matrix_location"), getModelMatrix());
+		meshes[i].getProgram().setUniform(modelMatrixLoc, getModelMatrix());
 		meshes[i].render();
 	}
 }

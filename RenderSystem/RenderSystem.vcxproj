@@ -70,12 +70,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;..\Lib\lua-5.3.1\src;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Assimp\lib\x86;..\Lib\glew-1.13.0\lib\Release\Win32;..\Lib\Simple OpenGL Image Library\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;..\Lib\lua-5.3.1\src;..\Lib\SFML-2.4.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Assimp\lib\x86;..\Lib\glew-1.13.0\lib\Release\Win32;..\Lib\Simple OpenGL Image Library\lib;..\Lib\SFML-2.4.2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;..\Lib\lua-5.3.1\src;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Lib\Assimp\lib\x86;..\Lib\glew-1.13.0\lib\Release\Win32;..\Lib\Simple OpenGL Image Library\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;..\Lib\lua-5.3.1\src;..\Lib\SFML-2.4.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Lib\Assimp\lib\x86;..\Lib\glew-1.13.0\lib\Release\Win32;..\Lib\Simple OpenGL Image Library\lib;..\Lib\SFML-2.4.2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>..\Lib\glm;..\Lib\glfw-3.1.1\include;..\Lib\glew-1.13.0\include;..\Lib\Assimp\include;..\Lib\Simple OpenGL Image Library\src;..\Lib\Assimp\include\Compiler;..\Lib\lua-5.3.1\src;$(IncludePath)</IncludePath>
@@ -96,7 +96,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;assimp.lib;SOIL.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;assimp.lib;SOIL.lib;glu32.lib;sfml-graphics-d.lib%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Lib>
@@ -131,7 +131,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;assimp.lib;SOIL.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;assimp.lib;SOIL.lib;glu32.lib;sfml-graphics.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Lib>

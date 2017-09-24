@@ -32,28 +32,43 @@ void Mesh::compileShaders(string filepath, string shader)
 	}*/
 }
 
+#include <SFML/Graphics.hpp>
 
-GLuint TextureMgr::loadTexture(const string& filename)
+unsigned int TextureMgr::load(const string filename)
 {
 	if (textures.find(filename) == textures.end()) // If the texture is not in the map
 	{
-		// Load it
-		GLuint texture = SOIL_load_OGL_texture
-			(
+		/*textures[filename] = SOIL_load_OGL_texture(
 				filename.c_str(),
 				SOIL_LOAD_AUTO,
 				SOIL_CREATE_NEW_ID,
-				SOIL_FLAG_INVERT_Y | SOIL_FLAG_MIPMAPS
-				);
+				0);*/
 
-		// Store it for later
-		textures[filename] = texture;
-		return texture;
+		sf::Image img;
+		if (!img.loadFromFile(filename))
+		{
+			return 0;
+		}
+		GLuint handle;
+		glGenTextures(1, &handle);
+		glBindTexture(GL_TEXTURE_2D, handle);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+			img.getSize().x, img.getSize().y,
+			0,
+			GL_RGBA, GL_UNSIGNED_BYTE, img.getPixelsPtr());
+		textures[filename] = handle;
+
+		// Initialize it with some typical params
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glGenerateMipmap(GL_TEXTURE_2D);
 	}
-	else
-	{
-		return textures[filename];
-	}
+	
+	return textures[filename];
 }
 
 map<string, GLuint> TextureMgr::textures;
