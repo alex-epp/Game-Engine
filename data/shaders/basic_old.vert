@@ -31,6 +31,7 @@ layout (std140) uniform FrameData
 
 out vec2 TexCoord;
 
+//out vec3 Position_worldspace;
 out vec3 EyeDirection_cameraspace;
 out vec3 LightDirection_cameraspace[MAX_LIGHTS];
 out vec3 Normal_cameraspace;

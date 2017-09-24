@@ -4,6 +4,7 @@
 
 in vec2 TexCoord;
 
+in vec3 Position_worldspace;
 in vec3 EyeDirection_cameraspace;
 in vec3 LightDirection_cameraspace[MAX_LIGHTS];
 in vec3 Normal_cameraspace;

@@ -12,6 +12,7 @@ Mesh::~Mesh()
 void Mesh::render()
 {
 	program.use();
+	mat.addToProgram(program);
 	mat.activateTextures();
 	vao.draw();
 }

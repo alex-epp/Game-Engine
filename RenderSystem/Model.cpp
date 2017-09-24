@@ -123,6 +123,7 @@ bool Model::loadFromFile(string filepath, string filename)
 			if (mat->GetTexture(aiTextureType_NORMALS, texIndex, &textureFile) == AI_SUCCESS)  // Normals
 				mesh.getMaterial().addTexture(filepath + textureFile.C_Str(), Material::TextureType::Normals);
 
+
 			if (mat->Get(AI_MATKEY_TEXTURE_HEIGHT(0), textureFile) == AI_SUCCESS)
 			{
 				mesh.getMaterial().addTexture(filepath + textureFile.C_Str(), Material::TextureType::Normals);

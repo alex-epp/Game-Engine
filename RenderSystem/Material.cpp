@@ -25,17 +25,6 @@ bool Material::addTexture(const string& filename, TextureType type)
 	return true;
 }
 
-bool Material::finishTextureLoading()
-{
-	bool error = false;
-	for (auto& tex : textures)
-	{
-		
-	}
-
-	return !error;
-}
-
 void Material::addColour(vec3 val, ColourType type)
 {
 	int index = static_cast<int>(type);
@@ -53,7 +42,6 @@ void Material::addToProgram(ShaderProgram& program)
 	static const auto& textureFlags = Constants::get().getStringArray("texture_flags");
 	static const auto& textureNames = Constants::get().getStringArray("texture_names");
 	static const auto& colourNames = Constants::get().getStringArray("colour_names");
-
 
 	for (int i = 0; i < static_cast<int>(TextureType::NumTypes); i++)
 	{
