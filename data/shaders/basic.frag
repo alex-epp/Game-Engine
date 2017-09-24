@@ -74,7 +74,7 @@ float getAttenuation(Light light, float len)
 
 void main()
 {
-	vec3 ambient, diffuse, specular;
+	vec3 ambient = vec3(0), diffuse = vec3(0), specular = vec3(0);
 	// Apply lights
 	vec3 n, l, E;
 	float atten, len;
@@ -120,4 +120,6 @@ void main()
 	// Colour correction
 	//const vec3 gamma = vec3(1.0/2.2);
 	//FragColour = vec4(pow(colour, gamma), 1);
+
+	//FragColour = vec4(texture(material.normalsTexture, TexCoord).xyz, 1);
 }
