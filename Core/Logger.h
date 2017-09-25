@@ -1,14 +1,14 @@
 // Based heavily off of http://www.drdobbs.com/cpp/a-lightweight-logger-for-c/240147505?pgno=1
 
 #pragma once
-#include <string>
+#include <chrono>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
 #include <memory>
 #include <mutex>
-#include <fstream>
-#include <iostream>
 #include <sstream>
-#include <chrono>
-#include <iomanip>
+#include <string>
 using namespace std;
 
 namespace core
@@ -99,10 +99,8 @@ namespace core
 	string Logger<LogPolicy>::getTime()
 	{
 		auto now = chrono::system_clock::now();
-		auto now_c = chrono::system_clock::to_time_t(now);
-
 		stringstream ss;
-		ss << put_time(localtime(&now_c), "%c");
+		ss << chrono::duration_cast<chrono::milliseconds>(now.time_since_epoch()).count();
 		return ss.str();
 	}
 

@@ -60,7 +60,7 @@ bool ShaderProgram::compileFromString(const string & source, ShaderType type)
 	}
 	if (shader == 0)
 	{
-		LOG_ERR("Could not create shader: ", gluErrorString(glGetError()));
+		//LOG_ERR("Could not create shader: ", gluErrorString(glGetError()));
 		return false;
 	}
 

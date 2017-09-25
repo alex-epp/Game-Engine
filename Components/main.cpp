@@ -3,17 +3,22 @@
 #include "../PlayerController/PlayerControllerSystem.h"
 #include <iostream>
 
-#ifdef _DEBUG
-#pragma comment (lib, "../Debug/RenderSystem.lib")
-#pragma comment (lib, "../Debug/Core.lib")
-#pragma comment (lib, "../Debug/WindowContext.lib")
-#pragma comment (lib, "../Debug/PlayerController.lib")
+
+#if defined(_WIN64) && defined(_DEBUG)
+#define LIB_DIR "../x64/Debug/"
+#elif defined(_WIN64)
+#define LIB_DIR "../x64/Release/"
+#elif defined(_DEBUG)
+#define LIB_DIR "../Debug/"
 #else
-#pragma comment (lib, "../Release/RenderSystem.lib")
-#pragma comment (lib, "../Release/Core.lib")
-#pragma comment (lib, "../Release/WindowContext.lib")
-#pragma comment (lib, "../Release/PlayerController.lib")
+#define LIB_DIR "../Release/"
 #endif
+
+#pragma comment (lib, LIB_DIR "RenderSystem.lib")
+#pragma comment (lib, LIB_DIR "Core.lib")
+#pragma comment (lib, LIB_DIR "WindowContext.lib")
+#pragma comment (lib, LIB_DIR "PlayerController.lib")
+
 
 using namespace std;
 using namespace renderSystem;
