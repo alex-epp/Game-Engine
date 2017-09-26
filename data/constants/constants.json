@@ -3,6 +3,18 @@
         "override.json"
     ],
     
+    "model_paths" : [
+        "../data/models/crytek-sponza/"
+    ],
+
+    "models" : [
+        "sponza2.obj"
+    ],
+
+    "lights" : [
+        "../data/light.txt"
+    ],
+
     "window_title" : "Window title",
     "window_width" : 640,
     "window_height" : 480,

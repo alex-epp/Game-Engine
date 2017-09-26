@@ -93,11 +93,21 @@ public:
 		rs.init();
 		pcs.init();
 
-		ComponentManager::get().addComponent<ModelComponent>(0, RenderSystem::createModel("../data/models/crytek-sponza/", "sponza2.obj"));
-		ComponentManager::get().addComponent<LightComponent>(1, RenderSystem::createLight("../data/light.txt"));
-		ComponentManager::get().addComponent<CameraComponent>(2, 45.f, glm::vec3(0, 1, 0), 0.1f, 10'000.f);
-		ComponentManager::get().addComponent<TransformComponent>(2, glm::vec3(0, 600, 0), glm::angleAxis(0.f, glm::vec3(0, 1, 0) ) );
-		ComponentManager::get().addComponent<PlayerControllerComponent>(2);
+		int ID = 0;
+		auto modelPaths = Constants::get().getStringArray("model_paths");
+		auto models = Constants::get().getStringArray("models");
+		for (decltype(modelPaths.size()) i = 0; i < modelPaths.size(); ++i)
+		{
+			ComponentManager::get().addComponent(++ID, RenderSystem::createModel(modelPaths[i], models[i]));
+		}
+		auto lights = Constants::get().getStringArray("lights");
+		for (auto light : lights)
+		{
+			ComponentManager::get().addComponent<LightComponent>(++ID, RenderSystem::createLight(light));
+		}
+		ComponentManager::get().addComponent<CameraComponent>(++ID, 45.f, glm::vec3(0, 1, 0), 0.1f, 10'000.f);
+		ComponentManager::get().addComponent<TransformComponent>(ID, glm::vec3(0, 600, 0), glm::angleAxis(0.f, glm::vec3(0, 1, 0) ) );
+		ComponentManager::get().addComponent<PlayerControllerComponent>(ID);
 
 		quit = false;
 		ChangeManager::get().add(this, { Message::WINDOW_CLOSE });
