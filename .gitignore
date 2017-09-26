@@ -312,4 +312,4 @@ OpenCover/
 ![Dd]ata/*
 
 # Allow for customized override.json config file
-!override.json
+override.json
