@@ -17,7 +17,6 @@ public:
 		auto diff = chrono::steady_clock::now() - start;
 		if (diff >= 1s)
 		{
-			LOG("Ms/frame - ", chrono::duration_cast<chrono::milliseconds>(diff).count() / static_cast<float>(frameCount));
 			LOG("Frames/sec - ", frameCount * 1000.f / chrono::duration_cast<chrono::milliseconds>(diff).count());
 			frameCount = 0;
 			start = chrono::steady_clock::now();

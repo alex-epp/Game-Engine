@@ -71,15 +71,20 @@ void VAO::attachBuffers(const vector<Vertex>& vertices, const vector<unsigned in
 	// Copy data into the buffer object
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), &vertices[0], GL_STATIC_DRAW);
 
+	static int vertexLocation = Constants::get().getNum<int>("vertex_location");
+	static int texcoordLocation = Constants::get().getNum<int>("texcoord_location");
+	static int normalLocation = Constants::get().getNum<int>("normal_location");
+	static int tangentLocation = Constants::get().getNum<int>("tangent_location");
+
 	// Set up vertex attributes
-	glEnableVertexAttribArray(Constants::get().getNum<int>("vertex_location"));
-	glVertexAttribPointer(Constants::get().getNum<int>("vertex_location"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
-	glEnableVertexAttribArray(Constants::get().getNum<int>("texcoord_location"));
-	glVertexAttribPointer(Constants::get().getNum<int>("texcoord_location"), 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texcoord));
-	glEnableVertexAttribArray(Constants::get().getNum<int>("normal_location"));
-	glVertexAttribPointer(Constants::get().getNum<int>("normal_location"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, normal));
-	glEnableVertexAttribArray(Constants::get().getNum<int>("tangent_location"));
-	glVertexAttribPointer(Constants::get().getNum<int>("tangent_location"), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, tangent));
+	glEnableVertexAttribArray(vertexLocation);
+	glVertexAttribPointer(vertexLocation, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
+	glEnableVertexAttribArray(texcoordLocation);
+	glVertexAttribPointer(texcoordLocation, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texcoord));
+	glEnableVertexAttribArray(normalLocation);
+	glVertexAttribPointer(normalLocation, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, normal));
+	glEnableVertexAttribArray(tangentLocation);
+	glVertexAttribPointer(tangentLocation, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, tangent));
 
 	// Create and bind index buffer
 	GLuint ibuffer;

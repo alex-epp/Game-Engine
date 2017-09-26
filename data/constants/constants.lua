@@ -1,8 +1,11 @@
+-- constants.lua is no longer being used
+
 -- General
 window_title = "Window title"
 window_width = 640
 window_height = 480
 fullscreen = false
+
 
 -- Rendering
 FOV = 45

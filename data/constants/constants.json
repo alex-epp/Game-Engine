@@ -1,0 +1,54 @@
+{
+    "constant_files" : [
+        "override.json"
+    ],
+    
+    "window_title" : "Window title",
+    "window_width" : 640,
+    "window_height" : 480,
+    "fullscreen" : false,
+
+    "FOV" : 45,
+    "near_plane" : 0.1,
+    "far_plane" : 10000,
+
+    "vertex_location"    : 0,
+    "texcoord_location"  : 1,
+    "normal_location"    : 2,
+    "tangent_location"   : 3,
+    "bitangent_location" : 4,
+
+    "model_matrix_location" : 0,
+
+    "perframe_uniform_name" : "FrameData",
+    "perframe_uniform_index" : 0,
+
+    "max_lights" : 8,
+
+    "texture_names" :
+    [
+        "material.diffuseTexture",
+         "material.specularTexture",
+         "material.shininessTexture",
+         "material.normalsTexture"
+    ],
+    "texture_flags" :
+    [
+        "material.diffuseTextureFlag",
+        "material.specularTextureFlag",
+        "material.shininessTextureFlag",
+        "material.normalsTextureFlag"
+    ],
+
+    "colour_names" :
+    [
+        "material.ambientColour",
+        "material.diffuseColour",
+        "material.specularColour"
+    ],
+
+    "shininess_name" : "material.shininess",
+
+    "basic_shader" : "basic",
+    "shader_path" : "../data/shaders/"
+}

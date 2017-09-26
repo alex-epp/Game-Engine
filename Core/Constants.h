@@ -1,15 +1,12 @@
 #pragma once
-#include <map>
-#include <vector>
-#include "Logger.h"
-using namespace std;
 
-extern "C"
-{
-	#include <lua.h>
-	#include <lauxlib.h>
-	#include <lualib.h>
-}
+#include "Logger.h"
+
+#include <map>
+#undef max
+#undef min
+#include <rapidjson/document.h>
+#include <vector>
 
 namespace core
 {
@@ -29,111 +26,34 @@ namespace core
 		
 		void cleanup();
 
-		bool getBool(const string& name) const noexcept
-		{
-			auto it = boolVals.find(name);
-			if (it != boolVals.end())
-			{
-				return it->second;
-			}
-			else
-			{
-				LOG_ERR("Key ", name, " is not in boolVals");
-				return false;
-			}
-		}
-		const string &getString(const string& name) const noexcept
-		{
-			auto it = stringVals.find(name);
-			if (it != stringVals.end())
-			{
-				return it->second;
-			}
-			else
-			{
-				LOG_ERR("Key ", name, " is not in stringVals");
-				static string blank = "";
-				return blank;
-			}
-		}
+		bool getBool(std::string);
+		std::string getString(std::string);
+		std::vector<string> getStringArray(std::string);
+		std::vector<bool> getBoolArray(std::string);
+		std::vector<double> getDoubleArray(std::string);
 
 		template<typename T = float, typename = typename std::enable_if_t< std::is_arithmetic<T>::value >>
-		T getNum(const string& name) const noexcept
-		{
-			static_assert(std::is_arithmetic<T>::value, "Invalid template argument to Constants::getNum - T must be arithmetic (integral or floating-point)");
+		T getNum(string name);
 
-			auto it = numVals.find(name);
-			if (it != numVals.end())
-			{
-				return static_cast<T>(it->second);
-			}
-			else
-			{
-				LOG_ERR("Key ", name, " is not in numVals");
-				return T();
-			}
-		}
-
-		const vector<bool>& getBoolArray(const string& name) const noexcept
-		{
-			auto it = boolArrayVals.find(name);
-			if (it != boolArrayVals.end())
-			{
-				return it->second;
-			}
-			else
-			{
-				LOG_ERR("Key ", name, " is not in boolArrayVals");
-				return vector<bool>();
-			}
-		}
-		const vector<string>& getStringArray(const string& name) const noexcept
-		{
-			auto it = stringArrayVals.find(name);
-			if (it != stringArrayVals.end())
-			{
-				return it->second;
-			}
-			else
-			{
-				LOG_ERR("Key ", name, " is not in stringArrayVals");
-				static vector<string> v;
-				return v;
-			}
-		}
-		
-		const vector<double>& getNumArray(const string& name) const noexcept // No template here, because each element in the vector would have to be converted
-		{
-			auto it = numArrayVals.find(name);
-			if (it != numArrayVals.end())
-			{
-				return it->second;
-			}
-			else
-			{
-				LOG_ERR("Key ", name, " is not in numArrayVals");
-				return vector<double>();
-			}
-		}
 	private:
 		Constants::Constants() { init(); }
 
+		string addJsonFileTexts(string, string);
 
 		void init();
-		void setVarNames();
-		void loadTable(const string& name, int index);
+		
+		map<string, double> m_numVals;
+		map<string, string> m_stringVals;
+		map<string, bool> m_boolVals;
+		map<string, vector<double>> m_numArrayVals;
+		map<string, vector<string>> m_stringArrayVals;
+		map<string, vector<bool>> m_boolArrayVals;
 
-		map<string, double> numVals;
-		map<string, string> stringVals;
-		map<string, bool> boolVals;
-		map<string, vector<double>> numArrayVals;
-		map<string, vector<string>> stringArrayVals;
-		map<string, vector<bool>> boolArrayVals;
+		rapidjson::Document m_jsonDoc;
+		vector<string> m_varNames;
 
-		lua_State* L;
-		vector<string> varNames;
-
-		static const char* FILENAME;
+		static string HEAD;
+		static string PATH;
 	};
 }
 

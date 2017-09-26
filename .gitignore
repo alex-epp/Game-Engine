@@ -310,3 +310,6 @@ OpenCover/
 
 # Include game assets
 ![Dd]ata/*
+
+# Allow for customized override.json config file
+!override.json

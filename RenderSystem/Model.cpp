@@ -110,10 +110,13 @@ bool Model::loadFromFile(string filepath, string filename)
 
 		// Other constants
 		float val;
+		static string shininessName = Constants::get().getString("shininess_name");
 		if (aimat->Get(AI_MATKEY_SHININESS, val) == AI_SUCCESS) // Shininess (exponent)
-			material->addAttrib(val, Constants::get().getString("shininess_name"));
+			material->addAttrib(val, shininessName);
 
-		material->compileShaders(Constants::get().getString("shader_path"), Constants::get().getString("basic_shader"));
+		static string shaderPath = Constants::get().getString("shader_path");
+		static string basicShader = Constants::get().getString("basic_shader");
+		material->compileShaders(shaderPath, basicShader);
 		material->getProgram().link();
 		material->getProgram().use();
 		material->addToProgram();

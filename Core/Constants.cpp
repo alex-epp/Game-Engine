@@ -1,115 +1,153 @@
 #include "Constants.h"
+
+#include <fstream>
 #include <regex>
+#include <string>
+
+using namespace std;
 
 namespace core
 {
-	const char* Constants::FILENAME = "../data/constants.lua";
-	
-	
+	string Constants::HEAD = "constants.json";
+	string Constants::PATH = "../data/constants/";
+
+
+	string Constants::addJsonFileTexts(string first, string second)
+	{
+		auto firstOpenPos = first.find_first_of('{');
+		auto firstClosePos = first.find_last_of('}');
+		auto secondOpenPos = second.find_first_of('{');
+		auto secondClosePos = second.find_last_of('}');
+
+		if (firstOpenPos == string::npos)
+			first = "{" + first;
+
+		if (firstClosePos != string::npos)
+			first.replace(firstClosePos, 1, ",");
+
+		if (secondOpenPos != string::npos)
+			second.replace(secondOpenPos, 1, " ");
+
+		if (secondClosePos == string::npos)
+			second += "}";
+
+		return first + second;
+	}
+
 	void Constants::init()
 	{
-		// Initialize Lua
-		L = luaL_newstate();
-		luaL_openlibs(L);
-
-		if (luaL_loadfile(L, FILENAME) || lua_pcall(L, 0, 0, 0))
+		ifstream file(Constants::PATH + Constants::HEAD);
+		if (file.fail())
 		{
-			LOG_ERR("Cannot run configuration file: ", lua_tostring(L, -1));
+			LOG_ERR("Cannot load base configuration file: ", Constants::PATH, Constants::HEAD);
 			return;
 		}
+		string head{ istreambuf_iterator<char>(file), istreambuf_iterator<char>() };
 
-		setVarNames();
-
-		for (const auto& name: varNames)
+		if (m_jsonDoc.Parse(head.c_str()).HasParseError())
 		{
-			lua_getglobal(L, name.c_str());
-			if (lua_isnumber(L, -1))
-				numVals[name] = lua_tonumber(L, -1);
-			else if (lua_isstring(L, -1))
-				stringVals[name] = lua_tostring(L, -1);
-			else if (lua_isboolean(L, -1))
-				boolVals[name] = static_cast<bool>(lua_toboolean(L, -1));
-			else if (lua_istable(L, -1))
-				loadTable(name, -1);
-
-			lua_pop(L, 1);
-		}
-
-		/*lua_getglobal(L, "_G");
-		if (lua_isnil(L, -1))
-		{
-			LOG_ERR("_G cannot be found");
+			LOG_ERR("Error reading ", Constants::PATH, Constants::HEAD, " at ", head.substr(m_jsonDoc.GetErrorOffset(), 10));
 			return;
 		}
-		lua_pushnil(L);
-		while (lua_next(L, -2))
+		
+		string json;
+		if (m_jsonDoc.HasMember("constant_files") && m_jsonDoc["constant_files"].IsArray())
 		{
-			LOG("Variable: ", lua_tonumber(L, -1));
-			lua_pop(L, 1);
-		}*/
+			for (auto& filename : m_jsonDoc["constant_files"].GetArray())
+			{
+				ifstream subfile(Constants::PATH + filename.GetString());
+				if (subfile.fail())
+				{
+					LOG_ERR("Cannot load configuration file: ", Constants::PATH, filename.GetString());
+					continue;
+				}
+				string curFile{ istreambuf_iterator<char>(subfile), istreambuf_iterator<char>() };
+				json = addJsonFileTexts(json, curFile);
+			}
+			json = addJsonFileTexts(json, head);
+			if (m_jsonDoc.Parse(json.c_str()).HasParseError())
+			{
+				LOG_ERR("Error reading at ", json.substr(m_jsonDoc.GetErrorOffset(), 10));
+				return;
+			}
+		}
+	}
+
+	bool Constants::getBool(string name)
+	{
+		return m_jsonDoc[name.c_str()].GetBool();
+	}
+	string Constants::getString(string name)
+	{
+		return m_jsonDoc[name.c_str()].GetString();
+	}
+	template <> int Constants::getNum<int>(string name)
+	{
+		return m_jsonDoc[name.c_str()].GetInt();
+	}
+	template <> float Constants::getNum<float>(string name)
+	{
+		return m_jsonDoc[name.c_str()].GetFloat();
+	}
+	vector<bool> Constants::getBoolArray(string name)
+	{
+		if (!m_jsonDoc.HasMember(name.c_str()))
+		{
+			LOG_ERR("Expected \"", name, "\" to exist");
+			return vector<bool>();
+		}
+		if (!m_jsonDoc[name.c_str()].IsArray())
+		{
+			LOG_ERR("Expected \"", name, "\" to be an array");
+			return vector<bool>();
+		}
+		vector<bool> re;
+		for (auto& b : m_jsonDoc[name.c_str()].GetArray())
+		{
+			re.emplace_back(b.GetBool());
+		}
+		return re;
+	}
+	vector<double> Constants::getDoubleArray(string name)
+	{
+		if (!m_jsonDoc.HasMember(name.c_str()))
+		{
+			LOG_ERR("Expected \"", name, "\" to exist");
+			return vector<double>();
+		}
+		if (!m_jsonDoc[name.c_str()].IsArray())
+		{
+			LOG_ERR("Expected \"", name, "\" to be an array");
+			return vector<double>();
+		}
+		vector<double> re;
+		for (auto& d : m_jsonDoc[name.c_str()].GetArray())
+		{
+			re.emplace_back(d.GetDouble());
+		}
+		return re;
+	}
+	vector<string> Constants::getStringArray(string name)
+	{
+		if (!m_jsonDoc.HasMember(name.c_str()))
+		{
+			LOG_ERR("Expected \"", name, "\" to exist");
+			return vector<string>();
+		}
+		if (!m_jsonDoc[name.c_str()].IsArray())
+		{
+			LOG_ERR("Expected \"", name, "\" to be an array");
+			return vector<string>();
+		}
+		vector<string> re;
+		for (auto& s : m_jsonDoc[name.c_str()].GetArray())
+		{
+			re.emplace_back(s.GetString());
+		}
+		return re;
 	}
 
 	void Constants::cleanup()
 	{
-		lua_pop(L, lua_gettop(L));
-		lua_close(L);
 	}
-
-	// Mostly from https://eliasdaler.wordpress.com/2013/10/20/lua_and_cpp_pt2/
-	void Constants::setVarNames()
-	{
-		std::string code =
-			"function getKeys(name) "
-			"s = \"\""
-			"for k, v in pairs(_G) do "
-			"    s = s..k..\",\" "
-			"    end "
-			"return s "
-			"end"; // function for getting table keys
-		luaL_loadstring(L,
-			code.c_str()); // execute code
-		lua_pcall(L, 0, 0, 0);
-		lua_getglobal(L, "getKeys"); // get function
-		lua_pushstring(L, ""); // NOT NEEDED - I just don't know enough about Lua to remove it
-		lua_pcall(L, 1, 1, 0); // execute function
-
-		std::string test = lua_tostring(L, -1);
-		varNames.clear();
-		std::string temp = "";
-
-		for (unsigned int i = 0; i < test.size(); i++) {
-			if (test.at(i) != ',') {
-				temp += test.at(i);
-			}
-			else {
-				varNames.push_back(temp);
-				temp = "";
-			}
-		}
-		lua_pop(L, lua_gettop(L));
-	}
-
-	void Constants::loadTable(const string& name, int index)
-	{
-		lua_pushnil(L);
-
-		//index--;
-
-		while (lua_next(L, -2))
-		{
-			if (lua_isnumber(L, -1))
-				numArrayVals[name].push_back(lua_tonumber(L, -1));
-			else if (lua_isstring(L, -1))
-				stringArrayVals[name].push_back(lua_tostring(L, -1));
-			else if (lua_isboolean(L, -1))
-				boolArrayVals[name].push_back(static_cast<bool>(lua_toboolean(L, -1)));
-			else if (lua_istable(L, -1))
-				LOG_WARN("Constants::loadTable cannot load multidimensional tables");
-
-			
-			lua_pop(L, 1);
-
-		}
-	}
-
 }
