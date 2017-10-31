@@ -313,3 +313,6 @@ OpenCover/
 
 # Allow for customized override.json config file
 override.json
+
+# Exclude build directories
+Build/

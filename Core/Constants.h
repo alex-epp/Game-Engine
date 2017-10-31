@@ -19,8 +19,8 @@ namespace core
 			static Constants inst;
 			return inst;
 		}
-		Constants::~Constants() = default;
-		Constants::Constants(const Constants&) = delete;
+		~Constants() = default;
+		Constants(const Constants&) = delete;
 		void operator=(const Constants&) = delete;
 
 		
@@ -36,7 +36,7 @@ namespace core
 		T getNum(string name);
 
 	private:
-		Constants::Constants() { init(); }
+		Constants() { init(); }
 
 		string addJsonFileTexts(string, string);
 
