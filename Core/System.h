@@ -3,7 +3,7 @@
 #include <tuple>
 #include <algorithm>
 #include <glm/glm.hpp>
-#include <glm/gtx/quaternion.hpp>
+#include <glm/gtc/quaternion.hpp>
 
 #include "Message.h"
 
