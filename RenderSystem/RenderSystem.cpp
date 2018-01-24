@@ -70,6 +70,18 @@ namespace renderSystem
 		return mc;
 	}
 
+	void openglCallbackFunction(GLenum source,
+                                           GLenum type,
+                                           GLuint id,
+                                           GLenum severity,
+                                           GLsizei length,
+                                           const GLchar* message,
+                                           const void* userParam)
+	{
+		if (severity == GL_DEBUG_SEVERITY_HIGH)
+			LOG_ERR(message);
+	}
+
 	void RenderSystem::init()
 	{
 		FOV = Constants::get().getNum<float>("FOV");
@@ -96,6 +108,11 @@ namespace renderSystem
 		glEnable(GL_DEPTH_TEST);
 		glCullFace(GL_BACK);
 		glEnable(GL_CULL_FACE);
+
+		// Initialize OpenGL logging
+		glEnable(GL_DEBUG_OUTPUT);
+		glDebugMessageCallback(openglCallbackFunction, nullptr);
+		
 
 		aspectRatio = windowWidth / static_cast<float>(windowHeight);
 		//glViewport(0, 0, 1, 1);

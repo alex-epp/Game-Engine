@@ -6,6 +6,8 @@
         "algorithm": "cpp",
         "vector": "cpp",
         "iostream": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "*.ipp": "cpp",
+        "system_error": "cpp"
     }
 }

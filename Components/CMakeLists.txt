@@ -11,7 +11,14 @@ target_link_libraries (Game Core
                             )
                             
 target_link_libraries (Game assimp
-                            glfw
                             glbinding
+                            glfw3
                             sfml-graphics
+                            X11
+                            Xinerama
+                            Xcursor
+                            Xxf86vm
+                            Xrandr
+                            pthread
+                            dl
                             )
