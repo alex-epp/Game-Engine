@@ -1,5 +1,7 @@
 #include "WindowContext.h"
 #include "../Core/Logger.h"
+#include <glbinding/gl/gl.h>
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include "../Core/Constants.h"
 using core::Constants;

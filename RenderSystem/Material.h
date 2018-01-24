@@ -1,13 +1,13 @@
 #pragma once
 #include <future>
-#include <Windows.h>
-#include <GL/glew.h>
+#include <glbinding/gl/gl.h>
 #include <glm/glm.hpp>
 #include <map>
 #include <string>
 #include "ShaderProgram.h"
 #include "../Core/Logger.h"
 
+using namespace gl;
 using namespace std;
 using glm::vec3;
 

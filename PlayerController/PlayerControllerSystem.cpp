@@ -1,7 +1,8 @@
 #include "PlayerControllerSystem.h"
 
 #include <glm/glm.hpp>
-#include <glm/gtx/rotate_vector.hpp>
+//#include <glm/gtx/rotate_vector.hpp>
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
 namespace playerControllerSystem

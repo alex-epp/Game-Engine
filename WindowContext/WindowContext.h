@@ -1,4 +1,6 @@
 #pragma once
+#include <glbinding/gl/gl.h>
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <string>
 #include "../Core/Core.h"

@@ -6,10 +6,10 @@
 #include "Model.h"
 
 #include <string>
-#include <GL/glew.h>
+#include <glbinding/gl/gl.h>
 #include <glm/glm.hpp>
-#include <gl/GL.h>
 
+using namespace gl;
 using namespace std;
 using namespace core;
 using glm::vec4;

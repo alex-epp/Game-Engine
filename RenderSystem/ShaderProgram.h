@@ -3,7 +3,7 @@
 #pragma once
 #include <algorithm>
 #include <fstream>
-#include <gl/glew.h>
+#include <glbinding/gl/gl.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
@@ -13,6 +13,7 @@
 #include <vector>
 #include "../Core/Logger.h"
 
+using namespace gl;
 using namespace std;
 using glm::vec3;
 using glm::vec4;

@@ -1,10 +1,11 @@
 #pragma once
-#include <GL/glew.h>
+#include <glbinding/gl/gl.h>
 #include <vector>
 #include <iostream>
 #include "Vertex.h"
 #include "../Core/Logger.h"
 
+using namespace gl;
 using namespace std;
 
 enum class BufferType { Vertex, Index, Colour, Normal, Texcoord };

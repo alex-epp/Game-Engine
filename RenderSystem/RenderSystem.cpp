@@ -6,13 +6,13 @@
 
 #include <string>
 #include <iostream>
-#include <GL/glew.h>
-#include <GL/GL.h>
+#include <glbinding/gl/gl.h>
+#include <glbinding/Binding.h>
 #include <glm/glm.hpp>
-#include <glm/gtx/string_cast.hpp>
+//#include <glm/gtx/string_cast.hpp>
 #include <cmath>
 
-
+using namespace gl;
 using namespace std;
 using namespace core;
 
@@ -83,22 +83,13 @@ namespace renderSystem
 		ChangeManager::get().add(this, { Message::MsgType::RESIZE_WINDOW });
 		LOG("Creating render system");
 
-		// Initialize GLEW
-		glewExperimental = GL_TRUE;
-		GLenum err = glewInit();
-		if (err != GLEW_OK)
-		{
-			LOG_ERR("Could not initialize GLEW: ", glewGetErrorString(err));
-			return;
-		}
-		LOG("GLEW Version: ", GLEW_VERSION);
+		// Load OpenGL Extensions
+		glbinding::Binding::initialize();
+
 		LOG("OpenGL Version: ", glGetString(GL_VERSION));
 		LOG("Vendor: ", glGetString(GL_VENDOR));
 		LOG("Renderer: ", glGetString(GL_RENDERER));
 		LOG("GLSL Version: ", glGetString(GL_SHADING_LANGUAGE_VERSION));
-
-		if (!GLEW_VERSION_4_3)
-			LOG_WARN("OpenGL 4.3 is not supported");
 
 		// Initialize OpenGL
 		glEnable(GL_TEXTURE_2D);

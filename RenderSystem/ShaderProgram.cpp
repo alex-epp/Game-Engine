@@ -130,7 +130,7 @@ bool ShaderProgram::link()
 	// Verify linkage
 	GLint status = 0;
 	glGetProgramiv(handle, GL_LINK_STATUS, &status);
-	if (status == GL_FALSE)
+	if (status == 0)
 	{
 		logString = "Failed to link shader program:\n";
 

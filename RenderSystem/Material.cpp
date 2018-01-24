@@ -1,4 +1,5 @@
 #include "Material.h"
+#include <glbinding/gl/gl.h>
 #include <SFML/Graphics.hpp>
 #include "../Core/Constants.h"
 using core::Constants;

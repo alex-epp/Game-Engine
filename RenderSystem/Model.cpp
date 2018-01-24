@@ -8,7 +8,7 @@ using core::Constants;
 template <typename T, typename Compare>
 std::vector<std::size_t> sort_permutation(
 	const std::vector<T>& vec,
-	Compare& compare)
+	Compare&& compare)
 {
 	std::vector<std::size_t> p(vec.size());
 	std::iota(p.begin(), p.end(), 0);
