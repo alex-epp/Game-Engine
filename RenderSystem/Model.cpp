@@ -71,7 +71,7 @@ bool Model::loadFromFile(string filepath, string filename)
 		LOG_ERR("Could not load model ", filename);
 		return false;
 	}
-	cout << "Assimp: " << time(0) - startTime << endl;
+	LOG("Assimp loading time: ", time(0) - startTime);
 	startTime = time(0);
 
 	vector<shared_ptr<Material>> matsByIndex;
@@ -122,7 +122,7 @@ bool Model::loadFromFile(string filepath, string filename)
 		material->addToProgram();
 	}
 
-	cout << "Materials: " << time(0) - startTime << endl;
+	LOG("Materials loading time: ", time(0) - startTime);
 	startTime = time(0);
 
 	// Load meshes
@@ -172,14 +172,14 @@ bool Model::loadFromFile(string filepath, string filename)
 		meshes[i]->getVAO().attachBuffers(vertices, indices);
 	} // End for each mesh
 
-	cout << "Meshes: " << time(0) - startTime << endl;
+	LOG("Meshes loading time: ", time(0) - startTime);
 	startTime = time(0);
 	
 	auto p = sort_permutation(materials, [](auto lhs, auto rhs) { return lhs < rhs; });
 	apply_permutation_in_place(materials, p);
 	apply_permutation_in_place(meshes, p);
 
-	cout << "Sorting: " << time(0) - startTime << endl;
+	LOG("Sorting loading time: ", time(0) - startTime);
 	startTime = time(0);
 
 	return true;
