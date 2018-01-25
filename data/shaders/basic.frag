@@ -117,6 +117,9 @@ void main()
 
 	// Final colour
 	FragColour = vec4(ambient + diffuse + specular, 1.0);
+	
+	//FragColour = vec4(1.0, 1.0, 1.0, 1.0);
+
 	// Colour correction
 	//const vec3 gamma = vec3(1.0/2.2);
 	//FragColour = vec4(pow(colour, gamma), 1);

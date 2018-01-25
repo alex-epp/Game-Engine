@@ -70,9 +70,9 @@ bool ShaderProgram::compileFromString(const string & source, ShaderType type)
 	glCompileShader(shader);
 
 	// Verify compilation
-	/*GLint result;
+	GLint result;
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &result);
-	if (result == GL_FALSE)
+	if (result == 0)
 	{
 		logString = "Vertex shader compilation failed:\n";
 		GLint logLen;
@@ -88,8 +88,9 @@ bool ShaderProgram::compileFromString(const string & source, ShaderType type)
 
 			free(log);
 		}
+		LOG_ERR(logString);
 		return false;
-	}*/
+	}
 	shaders.emplace_back(shader);
 	return true;
 }
@@ -145,6 +146,7 @@ bool ShaderProgram::link()
 			logString += "Program log: " +  string(log);
 			free(log);
 		}
+		LOG_ERR(logString);
 		return false;
 	}
 

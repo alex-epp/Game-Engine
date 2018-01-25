@@ -58,7 +58,8 @@ namespace windowContext
 		glfwSetKeyCallback(window, keyCallback);
 		glfwSetWindowCloseCallback(window, closeCallback);
 		glfwSetWindowSizeCallback(window, sizeCallback);
-		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		if (Constants::get().getBool("hide_cursor"))
+			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	}
 
 	bool WindowContext::shouldQuit()

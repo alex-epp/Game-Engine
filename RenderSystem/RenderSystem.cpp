@@ -58,6 +58,7 @@ namespace renderSystem
 		{
 			it->second->model.render();
 		}
+		glClearColor(1.f, 0.f, 0.f, 1.f);
 	}
 
 	ModelComponent* RenderSystem::createModel(string path, string filename)
@@ -78,7 +79,7 @@ namespace renderSystem
                                            const GLchar* message,
                                            const void* userParam)
 	{
-		if (severity == GL_DEBUG_SEVERITY_HIGH)
+		if (severity >= GL_DEBUG_SEVERITY_LOW)
 			LOG_ERR(message);
 	}
 

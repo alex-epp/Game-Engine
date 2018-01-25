@@ -19,6 +19,7 @@
     "window_width" : 640,
     "window_height" : 480,
     "fullscreen" : false,
+    "hide_cursor" : true,
 
     "FOV" : 45,
     "near_plane" : 0.1,
