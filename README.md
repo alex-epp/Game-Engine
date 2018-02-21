@@ -10,4 +10,4 @@ A partly finished game engine I work on occasionally. This is it rendering the C
 ### How to build (Linux)
  * Clone the submodules for assimp, glbinding, glfw3, glm, rapidjason and SFML
  * Build with CMake
- * **Warning**: on my machine, the Linux build is currently broken displays only a black screen
+ * **Warning**: on my machine, the Linux build is currently broken and displays only a black screen
